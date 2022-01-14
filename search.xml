@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>机器学习Day1</title>
+      <link href="posts/8625e497.html"/>
+      <url>posts/8625e497.html</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>[TOC]</p><h1 id="机器学习-Day-1"><a href="#机器学习-Day-1" class="headerlink" title="机器学习 Day.1"></a>机器学习 Day.1</h1><blockquote><p>一般地，令D = {x,x2….x.m}表示包含m个示例的数据集，每个示例由d个属性描述,则每个示例Xi= (xi1;xi2;……;xid) 是d维样本空间X中的一个向量, xi∈x,其中xij是xi在第j个属性上的取值(例如上述第3个西瓜在第2个属性上的值是“硬挺”), d称为样本xi的“维数”(dimensionality).</p></blockquote><h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><ul><li>（属性1 = 取值，属性2 = 取值，……，属性3=取值）——一个示例</li><li>{示例1，示例2，……，示例3}——数据集</li></ul><p>每条示例中所有的属性分别看作一根坐标轴张成==属性空间/样本空间==，则可以把一个示例称为==特征向量==</p><pre class="line-numbers language-mermaid" data-language="mermaid"><code class="language-mermaid">graph LRA[预测任务] --&gt;Z(监督学习)A --&gt;Y(无监督学习)Y--&gt;X(聚类)Z --&gt;B(离散型)  B --&gt; C(分类)    C --&gt;|仅涉及两个类别|F(二分类)    F --&gt;M(y = -1,+1)    C --&gt;|涉及多个类别|G(多分类)    G --&gt;L(y的绝对值&gt;2)  Z --&gt;D(连续型)  D --&gt;E(回归)    E --&gt;N(y=R)  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><ul><li>泛化能力：学得模型适用于新样本的能力。</li><li>假设空间规模大小：搜索目标是找到能够将训练集中的瓜判断正确的假设。假设的表示一旦确定，假设空间及规模大小也就确定了：（属性1的表示个数<em>属性2的……</em>属性n的表示个数==+1==）</li></ul><p>注：在考虑取值的时候，要考虑==该属性不影响结果==（用通配符*表示）、==不存在要求结果==（输出结果为空）两种容易忽略的情况。</p><ul><li><p>版本空间：根据假设的表示得到假设空间，剔除与样本集中正例（某事发生）不一致的假设向量和与负例一致的假设向量后剩余向量构成版本空间。</p><p>注意：含通配符的假设向量可能会和负例一致，一定要谨慎！不要多/少</p></li><li><p>偏好：1.尽可能特殊（适用情况尽可能少）；2.尽可能一般（适用情况尽可能多）；……</p></li></ul><blockquote><p><code>怎么判断是一般还是特殊？</code></p><p>​    <code>数据集中符合新样本属性的各类示例输出结果中多的为一般，少的为特殊。</code></p></blockquote><p>==引导算法确立“正确的”偏好的原则==</p><p>“奥卡姆剃刀”：若有多个假设与观察一致，则选最简单的那个</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 西瓜书 笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java复习细节拾遗</title>
       <link href="posts/1486b1bb.html"/>
       <url>posts/1486b1bb.html</url>
