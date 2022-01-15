@@ -659,7 +659,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-13
+                    2022-01-15
                 </div>
                 
 
@@ -692,7 +692,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>[TOC]</p>
-<h1 id="Java复习-细节拾遗"><a href="#Java复习-细节拾遗" class="headerlink" title="Java复习(细节拾遗)"></a>Java复习(细节拾遗)</h1><h2 id="前三章的一点点小知识"><a href="#前三章的一点点小知识" class="headerlink" title="前三章的一点点小知识"></a>前三章的一点点小知识</h2><p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1640868328646.png" alt="1640868328646"></p>
+<h1 id="Java复习-细节拾遗"><a href="#Java复习-细节拾遗" class="headerlink" title="Java复习(细节拾遗)"></a>Java复习(细节拾遗)</h1><h2 id="前三章的一点点小知识"><a href="#前三章的一点点小知识" class="headerlink" title="前三章的一点点小知识"></a>前三章的一点点小知识</h2><p><img src="https://s2.loli.net/2022/01/15/uC1xMbDcgjV5dJA.png" alt="1640868328646.png"></p>
 <ol>
 <li>Java语言数据中的数值类型都是有符号(正负号)的，在贮存数值类型的数据时，其最高位用来表示数据的正负号。</li>
 <li>简单类型的变量被声明时，存储空间也同时被分配。该贮存空间只占用一个单一贮存单元。对简单类型变量访问则直接可以得到它的数据。</li>
@@ -707,7 +707,7 @@
 <h3 id="This关键字"><a href="#This关键字" class="headerlink" title="This关键字"></a>This关键字</h3><blockquote>
 <p>表示当前对象，指向调用的对象本身（成员变量、成员方法）</p>
 </blockquote>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1639315871653.png" alt="1639315871653"></p>
+<p><img src="https://s2.loli.net/2022/01/15/8Mkq7I26APpHFeE.png" alt="1639315871653.png"></p>
 <blockquote>
 <p>println(this)与println(p)输出的是堆地址；</p>
 <p>相等</p>
@@ -724,7 +724,7 @@
 <p>声明一个引用变量：==变量名在栈内存中==（如下图,p1,p2）</p>
 <p>new一个对象：==为对象在堆中分配内存空间==</p>
 <p>一个对象能够被多个变量所引用</p>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1639314467617.png" alt="1639314467617"></p>
+<p><img src="https://s2.loli.net/2022/01/15/v3WAGUs7zucw29Y.png" alt="1639314467617.png"></p>
 <h3 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h3><blockquote>
 <p>动态存储管理技术，由Java虚拟机自动回收垃圾对象所占的内存空间</p>
 <hr>
@@ -736,9 +736,9 @@
 <p>使用static关键字修饰的成员变量称为静态变量或类变量，它被类的所有对象共享，可以通过==类名==直接访问。</p>
 </blockquote>
 <p>未使用static修饰的变量为实例变量，属于具体对象独有，只能通过引用变量访问。</p>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1639317286268.png" alt="1639317286268"></p>
+<p><img src="https://s2.loli.net/2022/01/15/9BFX7S54nwWCxhl.png" alt="1639317286268.png"></p>
 <p>输出：1（初始化为0）</p>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1639317455240.png" alt="1639317455240"></p>
+<p><img src="https://s2.loli.net/2022/01/15/EtQXZU3jVOFDb2W.png" alt="1639317455240.png"></p>
 <p>输出：5</p>
 <p><strong>注：static关键字在修饰变量的时候只能修饰成员变量，==不能修饰方法中的局部变量==</strong></p>
 <blockquote>
@@ -811,19 +811,19 @@
 <h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><blockquote>
 <p>同一操作作用于不同的对象可以有不同的解释.</p>
 </blockquote>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1639491096792.png" alt="1639491096792"></p>
+<p><img src="https://s2.loli.net/2022/01/15/FXpT6uAJDz8d4om.png" alt="1639491096792.png"></p>
 <p>方法的实现是由变量的==实际类型==决定的。</p>
 <p>多态体现的是==向上转型==,也称隐式转换。</p>
 <p>向下转型必须强制转换：</p>
 <p><code>Person p=new Child();//向上转型</code></p>
 <p><code>Parent o =(Parent)p;//向下转型</code></p>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1639491670509.png" alt="1639491670509"></p>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1639491747777.png" alt="1639491747777"></p>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1639492138248.png" alt="1639492138248"></p>
+<p><img src="https://s2.loli.net/2022/01/15/wR5ubgjCsoXJSkG.png" alt="1639491670509.png"></p>
+<p><img src="https://s2.loli.net/2022/01/15/F9m6yajg7AZ8MHQ.png" alt="1639491747777.png"></p>
+<p><img src="https://s2.loli.net/2022/01/15/IKCfAeJlaY8QkHw.png" alt="1639492138248.png"></p>
 <p>equals类默认比较的是引用变量地址（==也是）；String类中的equals被重写为比较两字符串内容是否相等。</p>
 <h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h4 id="线程的安全性问题"><a href="#线程的安全性问题" class="headerlink" title="==线程的安全性问题=="></a>==线程的安全性问题==</h4><p>1.同步代码块</p>
 <h2 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h2><h3 id="FileInputStream"><a href="#FileInputStream" class="headerlink" title="FileInputStream"></a>FileInputStream</h3><p>finally不能直接访问try中的内容,为防止程序中断后,流无法释放占用资源,==一定要将close方法写在finally中==,流要定义在==try外面==</p>
-<p><img src="C:%5CUsers%5CLR-%E8%B7%AF%E4%BA%BA-Ysh%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1641101856200.png" alt="        "></p>
+<p><img src="https://s2.loli.net/2022/01/15/YThykrqg1wbZ5WK.png" alt="1641101856200.png"></p>
 
                 
             </div>
@@ -1681,7 +1681,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.3k</span>&nbsp;字
+                class="white-color">3.5k</span>&nbsp;字
             
             
             
