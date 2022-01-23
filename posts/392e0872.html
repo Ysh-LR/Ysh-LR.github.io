@@ -40,9 +40,9 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Ysh-Lr's Blog" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Ysh-Lr's Blog" type="application/atom+xml">
 </head>
 
 
@@ -659,21 +659,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-15
+                    2022-01-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    8 分
                 </div>
                 
 
@@ -695,7 +695,7 @@
 <p>操作系统是配置在计算机硬件上的第一层软件,是对硬件系统的首次扩充,其主要作用是管理好这些设备,提高它们的利用率和系统的吞吐量,并为用户和应用程序提供一个简单的接口,便于用户使用。</p>
 </blockquote>
 <h2 id="操作系统的目标、作用及发展过程"><a href="#操作系统的目标、作用及发展过程" class="headerlink" title="操作系统的目标、作用及发展过程"></a>操作系统的目标、作用及发展过程</h2><h3 id="操作系统的目标"><a href="#操作系统的目标" class="headerlink" title="操作系统的目标"></a>操作系统的目标</h3><ul>
-<li><p>==方便性==</p>
+<li><p><strong>方便性</strong></p>
 <p>裸机使用→机器语言</p>
 <p>配置OS→高级语言编写的程序或OS提供的命令→方便用户、易学易用</p>
 </li>
@@ -703,7 +703,7 @@
 <p>提高系统资源的利用率</p>
 <p>提高系统的吞吐量</p>
 </li>
-<li><p>==可扩充性==</p>
+<li><p><strong>可扩充性</strong></p>
 <p>为适应计算机硬件、体系结构以及计算机应用发展的要求。</p>
 <p>无结构→模块化结构→层次化结构→微内核结构</p>
 </li>
@@ -728,27 +728,112 @@
 <h3 id="操作系统的发展过程"><a href="#操作系统的发展过程" class="headerlink" title="操作系统的发展过程"></a>操作系统的发展过程</h3><p>人工操作→单道批处理→多道批处理→分时系统→实时系统（优缺点）</p>
 <h2 id="操作系统的基本特性"><a href="#操作系统的基本特性" class="headerlink" title="操作系统的基本特性"></a>操作系统的基本特性</h2><ol>
 <li><p>并发</p>
-<p><strong>·</strong> ==并行与并发==</p>
 <blockquote>
-<p><strong>并行性</strong>：两个或多个事件在同一==时刻==发生。</p>
-<p><strong>并发性</strong>：两个或多个事件在同一==时间间隔==内发生。</p>
+<p><strong>·</strong> <strong>并行与并发</strong></p>
 </blockquote>
-<p>多道程序环境下：宏观上有多个程序在同时运行，但在单处理机系统中，每一时刻仅能有一道程序执行→微观上为分时交替进行→==并发==。但是如果有多个处理机，这些可以并发执行的程序可以分配给不同处理机执行→==并行==，实现微观意义上的同时进行。</p>
-<p><strong>·</strong> ==进程与线程==</p>
+<blockquote>
+<p><strong>并行性</strong>：两个或多个事件在同一**<em>时刻**</em>发生。</p>
+<p><strong>并发性</strong>：两个或多个事件在同一**<em>时间间隔**</em>内发生。</p>
+</blockquote>
+<p>多道程序环境下：宏观上有多个程序在同时运行，但在单处理机系统中，每一时刻仅能有一道程序执行→微观上为分时交替进行→*<strong>并发**<em>。但是如果有多个处理机，这些可以并发执行的程序可以分配给不同处理机执行→</em></strong>并行***，实现微观意义上的同时进行。</p>
+<blockquote>
+<p><strong>·</strong> 进程与线程</p>
+</blockquote>
 <p>未引入进程：计算程序与I/O程序（CPU空闲）间顺序执行。对计算程序和I/O程序分别设立进程：可以并发执行。</p>
 <p>引入进程：程序为静态的。进程为程序的执行→提高系统资源利用率，增加系统的吞吐量。</p>
 <p>引入线程：进程的更小的可执行单位，一个进程可包含若干个进程。</p>
 </li>
 <li><p>共享</p>
-<p>一般情况下共享与操作系统环境下的共享其含义并不相同：前者未限定借阅者必须在同一时间或间隔和同一地点进行共享；而在OS环境下的共享是指系统中的资源可供内存中多个并发执行的进程(线程)共同使用。 这里在==宏观上==既限定了时间（进程在内存期间内），也限定了地点（内存）。</p>
-<p>由于资源属性的不同，进程对资源共享的方式也不同，目前主要有以下两种资源共享方式：<br><strong>互斥共享方式</strong><br>系统中的某些资源，如打印机、磁带机，虽然它们可以提供给多个进程(线程)使用，但为使所打印或记录的结果不致造成混淆，应规定在一段时间内只允许一个进程(线程)访问该资源，我们把这种资源共享方式称为互斥式共享。<br>临界资源或独占资源：一段时间内只允许一个进程访问的资源。计算机系统中的大多数物理设备，以及某些软件中所用的栈、变量和表格，都属于临界资源，它们要求被互斥地共享。<br><strong>同时访问方式</strong><br>允许在一段时间内由多个进程 “同时”对它们进行访问。这里所谓的“同时”往往是宏观上的，而在==微观上==，这些进程可能是交替地对该资源进行访问。<br>并发和共享是多用户(多任务)OS的两个最基本的特征。它们又是互为存在的条件。</p>
+<p>一般情况下共享与操作系统环境下的共享其含义并不相同：前者未限定借阅者必须在同一时间或间隔和同一地点进行共享；而在OS环境下的共享是指系统中的资源可供内存中多个并发执行的进程(线程)共同使用。 这里在<strong>宏观上</strong>既限定了时间（进程在内存期间内），也限定了地点（内存）。</p>
+<p>由于资源属性的不同，进程对资源共享的方式也不同，目前主要有以下两种资源共享方式：<br><strong>互斥共享方式</strong><br>系统中的某些资源，如打印机、磁带机，虽然它们可以提供给多个进程(线程)使用，但为使所打印或记录的结果不致造成混淆，应规定在一段时间内只允许一个进程(线程)访问该资源，我们把这种资源共享方式称为互斥式共享。<br>临界资源或独占资源：一段时间内只允许一个进程访问的资源。计算机系统中的大多数物理设备，以及某些软件中所用的栈、变量和表格，都属于临界资源，它们要求被互斥地共享。<br><strong>同时访问方式</strong><br>允许在一段时间内由多个进程 “同时”对它们进行访问。这里所谓的“同时”往往是宏观上的，而在<strong>微观上</strong>，这些进程可能是交替地对该资源进行访问。<br>并发和共享是多用户(多任务)OS的两个最基本的特征。它们又是互为存在的条件。</p>
 </li>
 <li><p>虚拟</p>
+<blockquote>
+<p>在OS中,把通过某种技术将一个物理实体变为若干个逻辑上的对应物的功能称为”虚拟” 。前者为实体，后者则是虚的，是用户感觉上的东西。相应的，把用于实现虚拟的技术称为虚拟技术。</p>
+</blockquote>
+<p>“空分复用”或”时分复用”技术,将一条物理信道变为若干条逻辑信道.</p>
+<p><em>时分复用技术</em></p>
+<p>利用某<strong>设备</strong>为一用户服务的空闲时间，又转去为其他用户服务，使设备得到最充分的利用。</p>
+<blockquote>
+<p>⑴虚拟处理机技术：在虚拟处理机技术中，是通过多道程序设计技术，让多道程序并发执行的方法，来<strong>分时</strong>使用一台处理机的。（宏观）<br>⑵虚拟设备技术：将一台物理I/O设备虚拟为多台逻辑上的I/O设备，并允许每 个用户占用一台逻辑上的I/O设备，这样便可使原来仅允许在 一段时间内由一个用户访问的设备(即临界资源)，变为在一 段时间内允许多个用户同时访问的共享设备。</p>
+<p>在操作系统中，虚拟的实现主要是通过分时复用的方法。显然，如果 n 是某物理设备所对应的虚拟的逻辑设备数，则虚拟设备的平均速度必然等于或低于物理设备速度的1 / n 。</p>
+</blockquote>
+<p><em>空分复用技术</em></p>
+<p>利用<strong>存储器</strong>的空闲空间分区域存放和运行其他的多道程序，以此来提高内存的利用率。</p>
+<p>类似分时复用技术，虚拟设备平均占用空间必然也低于或等于1/n。</p>
 </li>
 <li><p>异步</p>
+<p>由于资源等因素的限制，使进程的执行通常都不是“一气呵成”， 而是以“停停走走”的方式运行。<br>内存中的每个进程在何时能获得处理机运行，何时又因提出某种资源请求而暂停，以及进程以怎样的速度向前推进，每道程序总共需多少时间才能完成，等等，都是不可预知的。由于各用户程序性能的不同，比如，有的侧重于计算而较少需要 I/O；而又有的程序其计算少而I/O多，这样，很可能是先进入内存的作业后完成；而后进入内存的作业先完成。或者说，<strong>进程是以人们不可预知的速度向前推进，此即进程的异步性</strong>。尽管如此，但只要运行环境相同，作业经多次运行，都会获得完全相同的结果。因此，异步运行方式是允许的，是操作系统的一个重要特征。</p>
 </li>
 </ol>
-
+<h2 id="操作系统的主要功能"><a href="#操作系统的主要功能" class="headerlink" title="操作系统的主要功能"></a>操作系统的主要功能</h2><ol>
+<li><p>处理机管理功能</p>
+<ul>
+<li>进程控制  为作业创建进程、撤销或终止已结束的进程、以及控制进程在运行中的状态转换。</li>
+<li>进程同步  ①<strong>进程互斥方式</strong>②<strong>进程同步方式</strong></li>
+<li>进程通信  实现相互合作进程之间的信息交换</li>
+<li>调度          包括作业调度和进程调度两步：作业调度：将作业调入内存后，分别为他们建立进程；进程调度：按照一定的算法选出一个进程</li>
+</ul>
+</li>
+<li><p>存储器管理功能</p>
+<ul>
+<li><p>内存分配  为每道程序分配内存空间；提高存储器的利用率；允许正在运行的程序申请附加的内存空间，以适应程序和数据动态增长的需要。</p>
+</li>
+<li><p>​     静态分配  作业的内存空间是在作业装入是确定的，装入后的运行期间不允许改作业申请新的内存空间或者改变内存空间（即不允许作业在内存中“移动”）。</p>
+</li>
+<li><p>​     动态分配  允许在运行期间申请新的内存空间和移动。</p>
+</li>
+<li><p>内存保护  确保每道用户程序都仅在自己的内存空间内运行，彼此互不干扰。</p>
+<p>​                 绝不允许用户程序访问操作系统的程序和数据，也不允许用户程序转移到非共享的其它用户程序中去执行。</p>
+</li>
+<li><p>地址映射  逻辑地址与物理地址</p>
+</li>
+<li><p>内存扩充  逻辑上扩充内存容量（虚拟）</p>
+</li>
+</ul>
+</li>
+<li><p>设备管理功能</p>
+<ul>
+<li><p>缓冲管理  ①缓和I/O设备和CPU之间速度不匹配的矛盾，提高CPU利用率。提高系统的吞吐量。</p>
+<p>​                 ②改善系统的性能</p>
+</li>
+<li><p>设备分配</p>
+</li>
+<li><p>设备处理</p>
+</li>
+</ul>
+</li>
+<li><p>文件管理功能</p>
+<ul>
+<li>缓冲管理</li>
+<li>设备分配</li>
+<li>设备处理</li>
+</ul>
+</li>
+<li><p>操作系统与用户之间的接口</p>
+<ul>
+<li>用户接口</li>
+<li>程序接口</li>
+</ul>
+</li>
+<li><p>（现代）系统安全</p>
+</li>
+<li><p>（现代）网络的功能和服务</p>
+</li>
+<li><p>（现代）支持多媒体</p>
+</li>
+</ol>
+<h2 id="操作系统结构设计"><a href="#操作系统结构设计" class="headerlink" title="操作系统结构设计"></a>操作系统结构设计</h2><h4 id="模块化结构设计"><a href="#模块化结构设计" class="headerlink" title="模块化结构设计"></a>模块化结构设计</h4><p><img src="https://s2.loli.net/2022/01/17/oyPSB4heOusbikn.png" alt="image.png"></p>
+<p>模块独立性标准:内聚性,耦合度——高内聚，低耦合。</p>
+<p>模块-接口法优点：</p>
+<p>​    提高OS设计的正确性、可理解性和可维护性。</p>
+<p>​    增强OS的可适应性。</p>
+<p>​    加速OS的开发过程。</p>
+<h4 id="分层式结构"><a href="#分层式结构" class="headerlink" title="分层式结构"></a>分层式结构</h4><ul>
+<li>优点：<br>易保证系统的正确性<br>易拓充<br>易维护</li>
+<li>缺点：<br>系统效率降低</li>
+</ul>
+<h4 id="客户-服务器模式"><a href="#客户-服务器模式" class="headerlink" title="客户/服务器模式"></a>客户/服务器模式</h4><h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><h4 id="微内核"><a href="#微内核" class="headerlink" title="微内核"></a>微内核</h4>
                 
             </div>
             <hr/>
@@ -1285,18 +1370,17 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/392e0872.html">
+                <a href="/posts/8c2e937.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/07.jpg" class="responsive-img" alt="操作系统学习笔记(一)">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/04.jpg" class="responsive-img" alt="计算机操作系统(二)">
                         
-                        <span class="card-title">操作系统学习笔记(一)</span>
+                        <span class="card-title">计算机操作系统(二)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1306,9 +1390,9 @@ new Valine({
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-14
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-01-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1317,7 +1401,6 @@ new Valine({
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1607,7 +1690,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">4.4k</span>&nbsp;字
+                class="white-color">9.6k</span>&nbsp;字
             
             
             
