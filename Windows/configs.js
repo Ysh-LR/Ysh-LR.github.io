@@ -5,8 +5,8 @@ YL.static = {
   iconBtnStart: 'html5', //主图标
   author: 'Luckey',//作者
   contactInformation: 'QQ：16463223',//联系方式
-  officialWebsite: 'https://ysh-lr.github.io/',//软件官网
-  welcome: '更多信息：//https://ysh-lr.github.io/',//加载完毕控制台提示信息
+  officialWebsite: 'http://www.luckyzmj.cn',//软件官网
+  welcome: '更多信息：//http://www.luckyzmj.cn',//加载完毕控制台提示信息
   copyrightDetail: '仅用于个人用户学习使用',//版权详细信息
   otherStatements: '参考自http://www.luckyzmj.cn',//其他信息（可留空）
 
