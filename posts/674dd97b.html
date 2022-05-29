@@ -666,14 +666,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.7k
+                    7.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    23 分
+                    24 分
                 </div>
                 
 
@@ -820,7 +820,7 @@
 </blockquote>
 <p>跨站点执行脚本XSS</p>
 <blockquote>
-<p>描述：</p>
+<p>描述：网络部分环境(或站点)具有更高的受信任级别高于其他环境,来自非受信环境的攻击者可在受信的环境注入数据,使其在受信环境作为脚本予以执行,或访问数据</p>
 <p>预防方法：</p>
 <p>示例：</p>
 <pre class="line-numbers language-none"><code class="language-none">&lt;input type="text" name="address1" value="value1from"&gt;
@@ -849,7 +849,26 @@ XSS②；"onfocus="alert(document.cookie)<span aria-hidden="true" class="line-nu
 <p>放过孩子吧，球球了</p>
 <h4 id="安全工程"><a href="#安全工程" class="headerlink" title="安全工程"></a>安全工程</h4><p><strong>三个基本过程</strong>：风险、工程、保证</p>
 <h2 id="•CH04：安全测试的概念"><a href="#•CH04：安全测试的概念" class="headerlink" title="•CH04：安全测试的概念"></a>•CH04：安全测试的概念</h2><p>静态代码测试比较适用于早期的代码开发阶段，而不是测试阶段。</p>
-<h4 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h4><h4 id="模糊测试"><a href="#模糊测试" class="headerlink" title="模糊测试"></a>模糊测试</h4><h4 id="程序数据扫描"><a href="#程序数据扫描" class="headerlink" title="程序数据扫描"></a>程序数据扫描</h4><h4 id="程序安全性测试典型问题"><a href="#程序安全性测试典型问题" class="headerlink" title="程序安全性测试典型问题"></a>程序安全性测试典型问题</h4><h4 id="网络安全测试典型问题参考"><a href="#网络安全测试典型问题参考" class="headerlink" title="网络安全测试典型问题参考"></a>网络安全测试典型问题参考</h4><h4 id="数据安全测试考虑问题参考"><a href="#数据安全测试考虑问题参考" class="headerlink" title="数据安全测试考虑问题参考"></a>数据安全测试考虑问题参考</h4><h4 id="安全的常规测试方法"><a href="#安全的常规测试方法" class="headerlink" title="安全的常规测试方法"></a>安全的常规测试方法</h4><ol>
+<h4 id="渗透测试"><a href="#渗透测试" class="headerlink" title="渗透测试"></a>渗透测试</h4><p>攻击性测试,测试人员手动或利用自动化工具模拟黑客的输入——真实有效、覆盖率低、对Dos威胁测试效率高</p>
+<h4 id="模糊测试"><a href="#模糊测试" class="headerlink" title="模糊测试"></a>模糊测试</h4><p>使用异常输入、非预期输入、甚至是随机输入——其他测试技术的补充——扩大了代码覆盖范围，提高了代码覆盖率测试程度——会触发一些平时不会触发的执行流</p>
+<h4 id="程序数据扫描"><a href="#程序数据扫描" class="headerlink" title="程序数据扫描"></a>程序数据扫描</h4><p>内存测试——缓冲区溢出</p>
+<h4 id="程序安全性测试典型问题"><a href="#程序安全性测试典型问题" class="headerlink" title="程序安全性测试典型问题"></a>程序安全性测试典型问题</h4><p>①明确区分系统中不同用户权限</p>
+<p>②系统中会不会出现用户冲突</p>
+<p>③更改用户权限会不会造成混乱</p>
+<p>④用户登陆密码是否可见、可复制</p>
+<p>⑤是否可以通过绝对路径登录</p>
+<p>⑥退出系统后是否删除了所有鉴权标记，是否可以使用后退键不通过输入口令进入系统</p>
+<h4 id="网络安全测试典型问题参考"><a href="#网络安全测试典型问题参考" class="headerlink" title="网络安全测试典型问题参考"></a>网络安全测试典型问题参考</h4><p>①测试采用的防护措施是否已经正确装配好，有关系统的补丁是否打上；</p>
+<p>②模拟非授权攻击，看防护系统是否坚固</p>
+<p>③采用成熟的网络漏洞检查工具检查系统相关漏洞；</p>
+<p>④采用木马检查工具检查系统木马情况</p>
+<p>⑤采用各种防外挂工具检查系统各组程序的外挂漏洞</p>
+<h4 id="数据安全测试考虑问题参考"><a href="#数据安全测试考虑问题参考" class="headerlink" title="数据安全测试考虑问题参考"></a>数据安全测试考虑问题参考</h4><p>①系统数据是否机密</p>
+<p>②系统数据的完整性</p>
+<p>③系统数据可管理性</p>
+<p>④系统数据独立性</p>
+<p>⑤系统数据可备份和恢复能力</p>
+<h4 id="安全的常规测试方法"><a href="#安全的常规测试方法" class="headerlink" title="安全的常规测试方法"></a>安全的常规测试方法</h4><ol>
 <li>基于风险的安全测试</li>
 <li>白盒、灰盒、黑盒测试</li>
 </ol>
@@ -1651,18 +1670,17 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/posts/674dd97b.html">
+                <a href="/posts/a772cedd.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/13.jpg" class="responsive-img" alt="软件安全(二)">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E4%BA%8C%E6%AC%A1%E5%85%83%E9%A3%8E/06.jpg" class="responsive-img" alt="数据库(B版)">
                         
-                        <span class="card-title">软件安全(二)</span>
+                        <span class="card-title">数据库(B版)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1672,9 +1690,9 @@ new Valine({
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-25
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-27
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1683,12 +1701,11 @@ new Valine({
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
-                        <span class="chip bg-color">软件安全</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
                     </a>
                     
                 </div>
@@ -1973,7 +1990,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">28k</span>&nbsp;字
+                class="white-color">33.8k</span>&nbsp;字
             
             
             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Ysh-Lr 计算机 系统与技术 Uestc">
+    <meta name="keywords" content="数据库(B版), Ysh-Lr 计算机 系统与技术 Uestc">
     <meta name="description" content="本科二年级 | 软件工程 | 系统与技术">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Ysh-Lr&#39;s Blog</title>
+    <title>数据库(B版) | Ysh-Lr&#39;s Blog</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/me.jpg">
 
@@ -510,12 +510,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/01.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E4%BA%8C%E6%AC%A1%E5%85%83%E9%A3%8E/06.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">数据库(B版)</h1>
                 </div>
             </div>
         </div>
@@ -634,9 +634,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -648,28 +652,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-13
+                    2022-05-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-13
+                    2022-05-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    11 分
                 </div>
                 
 
@@ -687,7 +691,281 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                wvlc3L96QK
+                <h2 id="数据库乱序复习-B版"><a href="#数据库乱序复习-B版" class="headerlink" title="数据库乱序复习(B版)"></a>数据库乱序复习(B版)</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><blockquote>
+<p>SQL——结构化查询语言——非过程化但也不是面向对象</p>
+<p>是一种对关系数据库进行访问的数据操作语言</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/05/27/CWBuHLFvzSVqxMd.png"></p>
+<h4 id="数据定义语言（DDL）"><a href="#数据定义语言（DDL）" class="headerlink" title="数据定义语言（DDL）"></a>数据定义语言（DDL）</h4><p><code>数据库对象：数据库【database】、数据库表【table】、索引【index】、视图【view】、触发器【trigger】、存储过程【function】</code></p>
+<p><strong>创建——create</strong></p>
+<p>创建表时，同时创建其属性以及列完整性约束</p>
+<blockquote>
+<p> ⼀个数据库不允许有两个表同名。在⼀个表中，可以定义多个列，但不允许有两个属性列同名。 </p>
+</blockquote>
+<p><em>第一种定义方式</em>——只能定义单列主键</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> table_1
+ <span class="token punctuation">(</span>
+  attribute_1 <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+  attribute_2 <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+  attribute_3 <span class="token keyword">data</span> <span class="token keyword">unique</span><span class="token punctuation">,</span>
+  attribute_4 <span class="token keyword">text</span> <span class="token boolean">null</span> <span class="token keyword">check</span><span class="token punctuation">(</span>attribute_4 <span class="token operator">in</span><span class="token punctuation">(</span><span class="token string">'喵喵'</span>，<span class="token string">'呼噜呼噜'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  attribute_5 <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token string">'逢考必过'</span>
+ <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><em>第二种定义方式</em>——可以定义复合主键和外键</p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">create table_2
+(
+ attribute_6 varchar(2) not null,
+ attribute_7 varchar(5) not null,
+ attribute_1 char(13) not null,
+ attribute_8 char(2) not null check(attribute_8 in ('男性','女性')),
+ constraint table2_PK primary key(attribute_6,attribute_7),
+ constraint attribute_1_FK foreign key(attribute_1)
+    references table_1(attribute_1)
+    on delete cascade
+    on update cascade
+)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>创建索引：create index &lt;索引名&gt; on &lt;表名&gt;&lt;(列名)&gt;</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">index</span> index_1 <span class="token keyword">on</span> table_1 <span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>创建视图：create view&lt;视图名&gt;[(列名1),(列名2),…] as&lt;select查询&gt;</p>
+<p>不指定列名默认为所有列。</p>
+<p><strong>删除——drop</strong></p>
+<p> DROP DATABASE语句不能⽤在存储过程、触发器、事务处理程序中。 </p>
+<p><strong>修改——alter</strong></p>
+<p>更改名字：alter &lt;对象&gt; &lt;对象原名称&gt; rename to &lt;新名称&gt;</p>
+<p>对于数据表：修改已有的列，则操作后加column,修改还不存在的列（添加）不用加add</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">#添加</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> table_1 <span class="token keyword">add</span> name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+<span class="token comment">#删除</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> table_1 <span class="token keyword">drop</span> <span class="token keyword">column</span> attribute_3
+<span class="token comment">#修改</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> table_1 <span class="token keyword">alter</span> <span class="token keyword">column</span> attribute_2 <span class="token keyword">type</span> money<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<hr>
+<p>被宝贝考察</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> baby 
+<span class="token punctuation">(</span>
+	id <span class="token keyword">serial</span><span class="token punctuation">,</span>
+    name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">check</span><span class="token punctuation">(</span>name <span class="token operator">in</span><span class="token punctuation">(</span><span class="token string">'zyh'</span><span class="token punctuation">,</span><span class="token string">'smy'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">table</span> baby <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'zyh'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">table</span> baby <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'smy'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>显然错误，甚至于是语法都不对QAQ，不复习菜得抠脚</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> baby 
+<span class="token punctuation">(</span>
+	id <span class="token keyword">serial</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">,</span>
+    name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">check</span><span class="token punctuation">(</span>name <span class="token operator">in</span><span class="token punctuation">(</span><span class="token string">'zyh'</span><span class="token punctuation">,</span><span class="token string">'smy'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> baby<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'zyh'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> baby<span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'smy'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>insert 插入数据是与into组合在一起的，完整的是insert into</li>
+<li>insert into后面不加table</li>
+<li>也是宝贝想和我说的，诚然，serial是代理键自动生成，但是，你插入的时候是默认的全列插入啊，所以必须在insert into &lt;表名&gt;后面加上属性列表</li>
+<li>一般代理键后加not null或者primary key</li>
+</ol>
+<hr>
+<h4 id="数据操纵语言（DML）"><a href="#数据操纵语言（DML）" class="headerlink" title="数据操纵语言（DML）"></a>数据操纵语言（DML）</h4><p><code>对数据库表表中数据进行操作</code></p>
+<p>插入——insert</p>
+<p><strong>insert into</strong> &lt;表名或者视图名&gt;[&lt;列名表&gt;] **values(列值表)**；</p>
+<p>&lt;&gt;内内容为必须，&lt;&gt;去掉，[ ]中为可选</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">insert</span> <span class="token keyword">into</span> table_1<span class="token punctuation">(</span>attribute_1<span class="token punctuation">,</span>attribute_2<span class="token punctuation">,</span>attribute_4<span class="token punctuation">,</span>name<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'1010101010101'</span><span class="token punctuation">,</span><span class="token string">'101001010101'</span><span class="token punctuation">,</span><span class="token string">'喵喵'</span><span class="token punctuation">,</span><span class="token string">'zyh'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> table_1 <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'1010101010102'</span><span class="token punctuation">,</span><span class="token string">'101001010102'</span><span class="token punctuation">,</span><span class="token string">'加油各位'</span><span class="token punctuation">,</span><span class="token string">'喵喵'</span><span class="token punctuation">,</span><span class="token string">'其他人'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>更新——update</p>
+<p><strong>update</strong> &lt;表名|视图名&gt;</p>
+<p><strong>set</strong>  &lt;列名1&gt;=&lt;表达式1&gt; [,&lt;列名2&gt;=&lt;表达式2&gt;…]</p>
+<p>[where &lt;条件表达式&gt;]</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">update</span> table_1
+<span class="token keyword">set</span> name <span class="token operator">=</span> <span class="token string">'smy and zyh'</span>
+<span class="token keyword">where</span> attribute_1 <span class="token operator">=</span> <span class="token string">'1010101010101'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>删除——delete</p>
+<p><strong>delete from</strong> &lt;表名|视图名&gt;</p>
+<p>[where &lt;条件表达式&gt;]</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">delete</span> <span class="token keyword">from</span> table_1
+<span class="token keyword">where</span> attribute_1 <span class="token operator">=</span> <span class="token string">'1010101010102'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="数据查询语言（DQL）"><a href="#数据查询语言（DQL）" class="headerlink" title="数据查询语言（DQL）"></a>数据查询语言（DQL）</h4><p><code>对数据库表表中数据进行操作</code></p>
+<h4 id="单表数据查询"><a href="#单表数据查询" class="headerlink" title="单表数据查询"></a>单表数据查询</h4><p>**select ** [all|distinct] &lt;列名&gt;[,&lt;列名&gt;…]</p>
+<p>[into&lt;新表&gt;]</p>
+<p><strong>from</strong> &lt;表名|视图名&gt;,[,&lt;表名&gt;…]</p>
+<p>[<strong>where</strong> &lt;条件&gt;]</p>
+<p>[<strong>group by</strong> &lt;列名&gt;[<strong>having</strong> &lt;条件&gt;]]</p>
+<p>[<strong>order by</strong> &lt;列名&gt; [ASC|DEC]]</p>
+<h5 id="Where子句"><a href="#Where子句" class="headerlink" title="Where子句"></a>Where子句</h5><p>①between…and限定列值范围</p>
+<p>②like通配符/not like：_代表一个未指定的字符；%代表一个或多个未指定的字符</p>
+<p>③and 、or、 not；in、not in、is null、is not null</p>
+<h5 id="order-by"><a href="#order-by" class="headerlink" title="order by"></a>order by</h5><p>DESC降序 ；ASC升序</p>
+<p>order by &lt;列名&gt; ASC（默认）|DESC</p>
+<h5 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h5><p><strong>聚合函数</strong>：AVG()求指定列<strong>数据</strong>的平均值</p>
+<p>COUNT()计算结果集<strong>行数</strong></p>
+<p>MIN()结果集<strong>指定列</strong>的最小值</p>
+<p>MAX()最大值</p>
+<p>SUM()总和</p>
+<blockquote>
+<p>注意题目要求，查询年龄最大最小对应出生日期分别是最小最大</p>
+</blockquote>
+<h5 id="SQL聚合函数和分组统计"><a href="#SQL聚合函数和分组统计" class="headerlink" title="SQL聚合函数和分组统计"></a>SQL聚合函数和分组统计</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> Major <span class="token keyword">as</span> 专业<span class="token punctuation">,</span><span class="token function">count</span><span class="token punctuation">(</span>StudentID<span class="token punctuation">)</span> <span class="token keyword">as</span> 学生人数
+<span class="token keyword">from</span> Student
+<span class="token keyword">group</span> <span class="token keyword">by</span> Major<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>在group by语句中，可以同时使用where子句和having子句进行分组统计，先使用where子句选择符合条件的<strong>元组</strong>——&gt;作为分组的对象，然后形成分组，最后应用having条件，筛选分组后的结果进行统计</p>
+</blockquote>
+<p>注意：除了GROUP BY语句外，列的名称是不允许和聚合函数一起混合使用。以下语句不规范。</p>
+<p>SELECT MaxHours,SUM(MaxHours)</p>
+<p>FROM PROJECT</p>
+<p>WHERE ProjectID &lt;= 1200;                 ❌</p>
+<p>DBMS产品在使用聚合函数的方式也不一样。一般来说，聚合函数是不能用于WHERE子句中的。</p>
+<p>SELECT ProjectID,MaxHours</p>
+<p>FROM PROJECT</p>
+<p>WHERE MaxHours &lt; AVG(MaxHours);             ❌</p>
+<h5 id="多表语句查询"><a href="#多表语句查询" class="headerlink" title="多表语句查询"></a>多表语句查询</h5><p><strong>子查询</strong></p>
+<p>子查询SQL语句基本格式：</p>
+<p>SELECT  &lt;目标列&gt;[，&lt;目标列&gt;…]</p>
+<p>FROM &lt;表名&gt;</p>
+<p>WHERE &lt;条件中嵌套另一关系表的SELECT 查询结果集&gt;</p>
+<p><code>在选课管理系统数据库中，我们希望检索出“计算机学院”的教师名单。该操作需要关联教师信息表（Teacher）和学院信息表（College），才能获得这些数据。这⾥可采⽤⼦查询⽅法实现两表 关联查询，其查询SQL语句如下。</code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> TeacherID<span class="token punctuation">,</span>TeacherName<span class="token punctuation">,</span>TeacherTitle
+<span class="token keyword">from</span> teacher 
+<span class="token keyword">where</span> CollegeID <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token keyword">select</span> CollegeID
+                   <span class="token keyword">from</span> College
+                   <span class="token keyword">where</span> CollegeName<span class="token operator">=</span><span class="token string">'计算机学院'</span><span class="token punctuation">)</span>
+<span class="token keyword">Order</span> <span class="token keyword">by</span> TeacherID<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>子查询：<strong>where里面嵌套查询</strong>——受限于性能，不能过多嵌套。</p>
+<p>​               只有在最终查询结果来自一个表时有效。</p>
+<p><strong>连接查询</strong></p>
+<p><code>在选课管理系统数据库中，我们希望得到各个学院的教师⼈数信息。该操作需要关联教师信息表（Teacher）和学院信息表 （College），查询学院名称、教师⼈数，输出按名称降序排列。这时 需要采⽤连接查询⽅法实现两表关联查询，其查询 SQL语句如下。</code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> College<span class="token punctuation">.</span>CollegeName <span class="token keyword">as</span> 学院名称，<span class="token function">count</span><span class="token punctuation">(</span>Teacher<span class="token punctuation">.</span>CollegeID<span class="token punctuation">)</span> <span class="token keyword">as</span> 教师人数
+<span class="token keyword">from</span> College<span class="token punctuation">,</span>Teacher
+<span class="token keyword">where</span> College<span class="token punctuation">.</span>CollegeID <span class="token operator">=</span> Teacher<span class="token punctuation">.</span>TeacherID
+<span class="token keyword">group</span> <span class="token keyword">by</span> College<span class="token punctuation">.</span>CollegeName
+<span class="token keyword">order</span> <span class="token keyword">by</span> College<span class="token punctuation">.</span>CollegeName <span class="token keyword">DESC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意：分组列名与排序列名要一致。</p>
+<p><code>在选课管理系统数据库中，我们希望得到各个学院的 教 师 信 息 。 这 需 要 关 联 教 师 信 息 表 （ Teacher ） 和 学 院 信 息 表 （ College ） ， 查 询 CollegeName 、 TeaherID 、 TeacherName 、 TeacherGender、TeacherTitle 等信息，按学院名称、编号分别排序 输出，其查询 SQL 语句如下： </code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> C<span class="token punctuation">.</span>CollegeName <span class="token keyword">as</span> 学院名<span class="token punctuation">,</span>T<span class="token punctuation">.</span>TeacherID <span class="token keyword">as</span> 教师号，T<span class="token punctuation">.</span>TeacherName <span class="token keyword">as</span> 教师姓名<span class="token punctuation">,</span>T<span class="token punctuation">.</span>TeacherGender <span class="token keyword">as</span> 性别<span class="token punctuation">,</span>T<span class="token punctuation">.</span>TeacherTitle <span class="token keyword">as</span> 教师职称
+<span class="token keyword">from</span> Teacher <span class="token keyword">as</span> T<span class="token punctuation">,</span>College <span class="token keyword">as</span> C
+<span class="token keyword">where</span> T<span class="token punctuation">.</span>CollegeID <span class="token operator">=</span> C<span class="token punctuation">.</span>CollegeID
+<span class="token keyword">order</span> <span class="token keyword">by</span> C<span class="token punctuation">.</span>CollegeName<span class="token punctuation">,</span>T<span class="token punctuation">.</span>TeacherID<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>JOIN…ON</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> C<span class="token punctuation">.</span>collegeName <span class="token keyword">as</span> 学院名<span class="token punctuation">,</span>T<span class="token punctuation">.</span>TeacherID <span class="token keyword">as</span> 教师号，T<span class="token punctuation">.</span>TeacherName <span class="token keyword">as</span> 教师姓名<span class="token punctuation">,</span>T<span class="token punctuation">.</span>TeacherGender <span class="token keyword">as</span> 性别<span class="token punctuation">,</span>T<span class="token punctuation">.</span>TeacherTitle <span class="token keyword">as</span> 教师职称
+<span class="token keyword">from</span> Teacher <span class="token keyword">as</span> T <span class="token keyword">join</span> College <span class="token keyword">as</span> C <span class="token keyword">on</span> T<span class="token punctuation">.</span>collegeID <span class="token operator">=</span> C<span class="token punctuation">.</span>CollegeID
+<span class="token keyword">order</span> <span class="token keyword">by</span> C<span class="token punctuation">.</span>collegeName<span class="token punctuation">,</span>T<span class="token punctuation">.</span>teacher<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>select</strong></p>
+<p><strong>from</strong> &lt;表名1&gt;<strong>join</strong>&lt;表名2&gt;<strong>on</strong>&lt;连接条件&gt;<strong>join</strong>&lt;表名3&gt;<strong>on</strong>&lt;连接条件&gt;</p>
+<p>————————————–内连接👆</p>
+<p>————————————–外连接👇</p>
+<p>**LEFT JOIN **:左外连接,即使右表中没有匹配,也从左表返回所有的行【向左看齐，左表有多少行满足查询条件最终就有多少行】</p>
+<p><strong>RIGHT JOIN</strong>：右外连接，即使左表中没有匹配，也从右表返回所有的行【向右看齐】</p>
+<p><strong>FULL JOIN</strong>：全外连接，只要其中一个表中存在匹配，就返回行。</p>
+<h4 id="数据控制语言-DCL"><a href="#数据控制语言-DCL" class="headerlink" title="数据控制语言(DCL)"></a>数据控制语言(DCL)</h4><p><code>对数据库对象访问权进行控制</code></p>
+<p>授权——grant</p>
+<p><strong>grant</strong>&lt;权限列表&gt;<strong>on</strong>&lt;数据库对象&gt;to&lt;用户或角色&gt;</p>
+<p>拒绝授权——deny</p>
+<p><strong>deny</strong>&lt;权限列表&gt;<strong>on</strong>&lt;数据库对象&gt;to&lt;用户或角色&gt;</p>
+<p>收回权限——revoke</p>
+<p><strong>revoke</strong> &lt;权限列表&gt; <strong>on</strong> &lt;数据库对象&gt; <strong>from</strong>&lt;用户或角色&gt;</p>
+<p>用户创建</p>
+<p><strong>create user</strong> &lt;用户名称&gt; with</p>
+<p>[(权限列表:)</p>
+<p>superuser|nosuperuser</p>
+<p>createdb|nocreatedb</p>
+<p>createrole|nocreaterole</p>
+<p>inherit|noinherit：继承</p>
+<p>login|nologin</p>
+<p>replication|noreplication：是否有复制权限</p>
+<p>bypassrls|nobypassrls</p>
+<p>connection limit connlimit</p>
+<p>encrypted|unencrypted password ‘  ‘</p>
+<p>valid until ‘timestamp’</p>
+<p>in role 角色名</p>
+<p>]</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">user</span> <span class="token string">"userA"</span> <span class="token keyword">with</span>
+login
+nosuperuser
+nocreatedb
+nocreaterole
+noreplication
+inherit
+connection <span class="token keyword">limit</span> <span class="token operator">-</span><span class="token number">1</span>
+password <span class="token string">'123456'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>在用户创建中，默认具有登录权限，而在角色创建中，默认不具有登录权限。</strong></p>
+<p>用户删除：drop</p>
+<p><strong>权限</strong></p>
+<p>权限类别</p>
+<ol>
+<li>数据库对象访问操作权限</li>
+</ol>
+<p>用户在数据库中被赋予的<strong>特定数据库对象的数据</strong>访问操作权限，如对数据库表的select , iinsert, update ,delete数据操作权限。</p>
+<ol start="2">
+<li><p>数据库对象定义操作权限</p>
+<p>用户在数据库中被赋予的<strong>数据库对象</strong>创建、删除、修改权限。</p>
+</li>
+</ol>
+<p><code>在3.7.1节的⼯程项⽬管理系统中，DBA赋予员⼯⽤户 （userA）对部门表（Department）、员⼯表（Employee）、项⽬ 表（Project）和任务表（Assignment）的读取数据权限。实现⽤户 授权的SQL程序如下。 </code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">grant</span> <span class="token keyword">select</span> <span class="token keyword">on</span> Department <span class="token keyword">to</span> <span class="token string">"userA"</span><span class="token punctuation">;</span>
+<span class="token keyword">grant</span> <span class="token keyword">select</span> <span class="token keyword">on</span> Employee <span class="token keyword">to</span> <span class="token string">"userA"</span><span class="token punctuation">;</span>
+<span class="token keyword">grant</span> <span class="token keyword">select</span> <span class="token keyword">on</span> Project <span class="token keyword">to</span> <span class="token string">"userA"</span><span class="token punctuation">;</span>
+<span class="token keyword">grant</span> <span class="token keyword">select</span> <span class="token keyword">on</span> Assignment <span class="token keyword">to</span> <span class="token string">"userA"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>⼯程项⽬管理系统中，假定需要在 ProjectDB数据库内创建经理⾓⾊ Role_Manager。该⾓⾊具有登录权限（Login）和⾓⾊继承权限，但它不是超级⽤户，不具有创建数据库 权限、创建⾓⾊权限、数据库复制权限，此外数据库连接数不受限 制。经理⾓⾊Role_Manager的创建SQL语句如下。</code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> role <span class="token string">"Role_Manager"</span> <span class="token keyword">with</span>
+login
+inherit
+nosuperuser
+nocreatedb
+nocreaterole
+noreplication
+connection <span class="token keyword">limit</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>为了使Role_Manager⾓⾊还具有操作访问数据库 ProjectDB 中的数据库表权限,DBA需要执⾏如下授权SQL语句。</code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">grant</span> <span class="token keyword">select</span><span class="token punctuation">,</span><span class="token keyword">insert</span><span class="token punctuation">,</span><span class="token keyword">delete</span><span class="token punctuation">,</span><span class="token keyword">update</span> <span class="token keyword">on</span> Department <span class="token keyword">to</span> <span class="token string">"Role_Manager"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h4 id="事务处理语言（TPL）"><a href="#事务处理语言（TPL）" class="headerlink" title="事务处理语言（TPL）"></a>事务处理语言（TPL）</h4><p><code>事务</code></p>
+<p>开始——begin transaction</p>
+<p>提交——commit ——数据变更的提交处理</p>
+<p>回滚——rollback</p>
+<p>保存——savepoint——部分SQL操作的结果数据保存，避免取消过多的事务数据操作</p>
+<p><code>在选课管理数据库 CurriculaDB 中，使⽤事务程序实 现对学院信息表 College的数据插⼊，其事务SQL程序如下。</code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">begin</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> college<span class="token punctuation">(</span>collegeID<span class="token punctuation">,</span>collegeName<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'0001'</span><span class="token punctuation">,</span><span class="token string">'计算机学院'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> college<span class="token punctuation">(</span>collegeID<span class="token punctuation">,</span>collegeName<span class="token punctuation">)</span> <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'0002'</span><span class="token punctuation">,</span><span class="token string">'信通学院'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">commit</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>insert数据插入语句执行后，并没有立即提交数据库，而是在<strong>执行commit</strong>之后一起提交。</p>
+<p><code>在选课管理数据库CurriculaDB中，使⽤事务程序对课程表Course插⼊数据，并在事务处理语句中加⼊保存点语句，其事务SQL程序如下。 </code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">begin</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> course <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'C001'</span><span class="token punctuation">,</span><span class="token string">'数据库'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> course <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'C002'</span><span class="token punctuation">,</span><span class="token string">'计算机网络'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">savepoint</span> temppoint<span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> course <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'C003'</span><span class="token punctuation">,</span><span class="token string">'面向对象编程'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">rollback</span> <span class="token keyword">to</span> tamppoint
+<span class="token keyword">commit</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>锁</strong>：假定命名共享数据D</p>
+<p>Lock-S（D）共享锁定</p>
+<p>Lock-X（D）排他锁定</p>
+<p>Unlock（D）释放锁</p>
+<h4 id="游标控制语言（CCL）"><a href="#游标控制语言（CCL）" class="headerlink" title="游标控制语言（CCL）"></a>游标控制语言（CCL）</h4><p><code>数据库游标结构</code></p>
+<p>定义——declare</p>
+<p>提交游标数据——fetch into</p>
+<p>关闭——close</p>
+<h4 id="SQL语言数据类型注意事项"><a href="#SQL语言数据类型注意事项" class="headerlink" title="SQL语言数据类型注意事项"></a>SQL语言数据类型注意事项</h4><p><strong>单引号问题：</strong></p>
+<p>字符(char varchar text)、日期(date datetime)处理时需要加单引号，货币类型（money）不加单引号。</p>
+<h3 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h3><p>postgresql数据库软件本身提供：<strong>pg_dump</strong><code>备份单个数据库</code>,<strong>pg_dumpall</strong><code>备份整个数据库集群及系统全局数据库</code></p>
+
                 
             </div>
             <hr/>
@@ -713,7 +991,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://ysh-lr.github.io/baidu_verify_xxxxxxx.html">https://ysh-lr.github.io/baidu_verify_xxxxxxx.html</a>
+                    <a href="https://ysh-lr.github.io/posts/a772cedd.html">https://ysh-lr.github.io/posts/a772cedd.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -750,7 +1028,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1220,18 +1502,17 @@ new Valine({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/baidu_verify_xxxxxxx.html">
+                <a href="/posts/8d2241fe.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/01.jpg" class="responsive-img" alt="">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/04.jpg" class="responsive-img" alt="数据库(X版)">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">数据库(X版)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1241,9 +1522,9 @@ new Valine({
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-13
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-27
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1252,7 +1533,14 @@ new Valine({
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -1260,16 +1548,16 @@ new Valine({
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/baidu_verify_xxxxxxx.html">
+                <a href="/posts/674dd97b.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/01.jpg" class="responsive-img" alt="">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/13.jpg" class="responsive-img" alt="软件安全(二)">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">软件安全(二)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1280,7 +1568,7 @@ new Valine({
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-25
                             </span>
                         <span class="publish-author">
                             
@@ -1290,7 +1578,14 @@ new Valine({
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">软件安全</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>

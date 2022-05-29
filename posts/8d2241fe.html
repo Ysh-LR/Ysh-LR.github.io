@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Ysh-Lr 计算机 系统与技术 Uestc">
+    <meta name="keywords" content="数据库(X版), Ysh-Lr 计算机 系统与技术 Uestc">
     <meta name="description" content="本科二年级 | 软件工程 | 系统与技术">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -17,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Ysh-Lr&#39;s Blog</title>
+    <title>数据库(X版) | Ysh-Lr&#39;s Blog</title>
 
     <link rel="icon" type="image/jpeg" href="/medias/me.jpg">
 
@@ -510,12 +510,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/01.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/04.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title"></h1>
+                    <h1 class="description center-align post-title">数据库(X版)</h1>
                 </div>
             </div>
         </div>
@@ -634,9 +634,13 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -648,28 +652,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-01-13
+                    2022-05-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-01-13
+                    2022-05-29
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    8 分
                 </div>
                 
 
@@ -687,7 +691,159 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                wvlc3L96QK
+                <h2 id="数据库乱序复习（X版）"><a href="#数据库乱序复习（X版）" class="headerlink" title="数据库乱序复习（X版）"></a>数据库乱序复习（X版）</h2><p><strong>unique：</strong>列完整性约束——该属性取值独特，即在该表中没有元组的这一属性相同</p>
+<p><strong>distinct：</strong> 查询时输出去掉重复值</p>
+<p><strong>列约束定义主键与表约束定义主键</strong>：</p>
+<p>列约束定义主键 primary key关键词只能定义单列主键，无法定义复合主键；</p>
+<p>表约束定义主键：便于定义复合主键；可命名主键约束</p>
+<p><strong>索引</strong>：是一种按照关系表中 <em>指定列</em>  的取值顺序组织元组数据存储的数据结构</p>
+<p>——可以加快表中数据的查询访问。</p>
+<ul>
+<li>提高数据检索错误</li>
+<li>可快速连接关联表</li>
+<li>减少分组和排序时间</li>
+</ul>
+<p>但会引入额外开销：创建和维护索引、占用额外空间、数据操纵因维护索引带来系统性能开销。</p>
+<p>​       select语句中select子句实现的是<strong>投影</strong>（选列），where子句实现的是<strong>选择</strong>（选行）</p>
+<p>​        在group by语句中，可以同时使用where子句和having子句进行分组统计，先使用where子句选择符合条件的<strong>元组</strong>——&gt;作为分组的对象，然后形成分组，最后应用having条件，筛选分组后的结果进行统计</p>
+<p><strong>θ连接运算</strong>是从R和S的笛卡尔积中选取R关系在A属性组上的值与 S关系在B属性组上的值满⾜⽐较关系θ的元组集合，组成新的关系。——是笛卡尔积和选择运算组合而成的。</p>
+<p><strong>视图</strong>:建立在SELECT查询结果集上的。</p>
+<ul>
+<li>没有自己的数据——使用存储在基础表中的数据</li>
+<li>基础表中的改变会影响视图、视图中的改变同样会影响基础表</li>
+<li>只能实现对数据的查询和<strong>一定约束</strong>的修改与删除</li>
+<li>一个数据库不允许有两个视图同名</li>
+</ul>
+<p>使用视图的好处：使用视图简化复杂SQL查询操作；使用视图提高数据访问安全性；提供一定程度的数据逻辑独立性；集中展示用户所感兴趣的特定数据</p>
+<h3 id="数据库管理"><a href="#数据库管理" class="headerlink" title="数据库管理"></a>数据库管理</h3><p> <strong>数据库管理（DataBase Management,DBM）</strong>指为保证数据库系统的正常运⾏和服务质量，有关⼈员必须进⾏的系统管理。 </p>
+<p> 负责数据库系统管理任务的⼈员 被称为 <strong>数 据 库 管 理 员（DBA）</strong> </p>
+<p>DBA进行数据库管理的目标如下：</p>
+<ol>
+<li>保障数据库系统正常稳定运行；</li>
+<li>充分发挥数据库系统的软硬件处理能力；</li>
+<li>确保数据库系统安全和用户数据隐私性；</li>
+<li>有效管理数据库系统用户及其角色权限；</li>
+<li>解决数据库系统性能优化、系统故障与数据损坏问题；</li>
+<li>最大限度地发挥数据库对其所属机构的作用。</li>
+</ol>
+<p>内容包括：DBMS运行管理、数据库性能监控、事务并发控制、数据库索引管理、数据库调优、数据库重构、数据库角色管理、数据库用户管理、对象访问权限管理、数据安全管理、数据库备份、数据库故障恢复处理</p>
+<p><img src="https://s2.loli.net/2022/05/28/F2UOatXxNLiEdbk.png"></p>
+<h4 id="DBMS的功能"><a href="#DBMS的功能" class="headerlink" title="DBMS的功能"></a>DBMS的功能</h4><p>①数据库定义：提供了DBA对数据库及其对象进行创建于修改的功能. DBA 是<strong>通过DBMS</strong>执行DDL</p>
+<p>②数据库运行管理：启停控制、多用户环境下事务并发控制、数据库事务管理、访问操作安全性检查、访问操作存取控制、访问操作完整性检查、系统运行日志管理、系统运行性能监控等。</p>
+<p>③数据组织与存储</p>
+<p>④数据库维护</p>
+<p>⑤数据库通信</p>
+<p><img src="https://s2.loli.net/2022/05/28/fkLtEnr8a6XD4uq.png"></p>
+<p> ，DBMS本⾝还需要通过操作系统的系统调⽤，才能实现对数据 库⽂件的存取访问 </p>
+<p><strong>事务</strong></p>
+<p> 指由构成单个逻辑处理单元的 ⼀组数据库访问操作，这些操作的SQL语句被封装在⼀起，它们要么 都被成功执⾏，要么都不被执⾏。 </p>
+<ul>
+<li>原子性</li>
+<li>一致性</li>
+<li>隔离性</li>
+<li>持续性</li>
+</ul>
+<p>并发执行：</p>
+<p>改善系统的资源利用率</p>
+<p>减少事务执行的平均等待时间</p>
+<p><img src="https://s2.loli.net/2022/05/28/TC5jsqI9cALRP6M.jpg"></p>
+<p><img src="https://s2.loli.net/2022/05/28/lbEQJh64BNRnixH.png"></p>
+<p>并发事务控制调度器控制哥哥十五的数据读/写操作指令按照特定顺序执行。</p>
+<p>结论：在事务并发运行中，只有当事务调度顺序的执行结果与事务串行执行的数据结果一样时，该并发事务调度才能保证数据库的一致性——<strong>可串行化调度</strong></p>
+<p><img src="https://s2.loli.net/2022/05/28/PiyNZIHc9CgKU1p.png"></p>
+<p>锁表机制+并发控制调度器</p>
+<ul>
+<li>排他锁（Lock-X）：可以封锁其他事物对共享数据的<strong>任何加锁操作</strong>，限制其他事物对共享数据的<strong>修改、删除、读取操作</strong></li>
+<li>共享锁（Lock-S）只封锁其他事务对加锁数据的修改或删除操作，但可以允许其他事务对加锁数据进行共享数据读操作</li>
+</ul>
+<blockquote>
+<p> 当⼀个共享数据已经被⼀个事务实施了排他锁后，其他事务不能再对该数据进⾏任何锁定操作，必须等待原有锁定 解除后，本事务才能对共享数据施加锁定。当⼀个共享数据已经被⼀个事务实施了共享锁，其他事务对该数据只能施加共享锁定，不能再添加排他锁定。若⼀个共享数据没有被锁定，则事务可以添加任何锁定。  </p>
+</blockquote>
+<p> 数据库锁机制可以在多种粒度上对共享数据资源进⾏锁定处理。 在典型DBMS产品中，⼀般可以在<code>数据库、表、⻚⾯、⾏</code>的粒度级别 上进⾏资源锁定<strong>。锁定的粒度越⼤，DBMS管理就越容易，但系统并发数据处理能⼒就越差。锁定的粒度越⼩，DBMS管理就越复杂，但系统并发数据处理能⼒就越强。</strong> </p>
+<blockquote>
+<p>只要没有提交，那么事务处理共享数据仅仅是在自己获得的最初值上处理。也就是说，可以理解为共享数据将自己拷贝了n份分发给了n个并发执行的事务，如果有一个事务进行了提交，那么仅仅是数据库中数据更新，其他事务分发到的“拷贝”并不会同时进行更新。</p>
+<p>想了想上面的例子还是不够全面和确切，那就从原理来看，我们知道并行调度机制的流程图，对于共享数据，事务提取的都是来自缓冲区的（提交后将缓冲区数据传回数据库）事务1修改数据后【缓冲区数据已被更改】事务2读取【读的是来自缓冲区的数据】到的就是1修改后的数据；如果事务1修改的同时事务2读取，因为缓冲区数据此时并未被修改，读到的是原本的值，然后两事务就相当于以上面的比喻独立的执行了，最后可能出现覆盖等等情况。</p>
+</blockquote>
+<h4 id="基于锁的并发控制协议"><a href="#基于锁的并发控制协议" class="headerlink" title="基于锁的并发控制协议"></a>基于锁的并发控制协议</h4><p><strong>锁</strong>：假定命名共享数据D</p>
+<p>Lock-S（D）共享锁定</p>
+<p>Lock-X（D）排他锁定</p>
+<p>Unlock（D）释放锁</p>
+<table>
+<thead>
+<tr>
+<th>协议</th>
+<th>说明</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻象读</th>
+<th>丢失更新</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一级加锁协议</td>
+<td>修改共享数据前加X，事务处理完成解锁</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>二级加锁协议</td>
+<td>一级基础上，读共享前加S，读完解锁</td>
+<td>✔</td>
+<td>❌</td>
+<td>❌</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>三级加锁协议</td>
+<td>一级基础上，读共享前加S，事务执行完解锁</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+</tbody></table>
+<h4 id="并发事务可串行化调度"><a href="#并发事务可串行化调度" class="headerlink" title="并发事务可串行化调度"></a>并发事务可串行化调度</h4><p>——两阶段锁定协议操作调度</p>
+<blockquote>
+<p> 两阶段锁定协议指所有并发事务在进⾏共享数据操作处理时，必 须按照两个阶段（增⻓阶段、缩减阶段）对共享数据进⾏加锁和解锁 申请。在增⻓阶段，事务可以对共享数据进⾏加锁申请，但不能释放 已有的锁定；在缩减阶段，事务可以对已有的锁定进⾏释放，但不能 对共享数据提出新的加锁申请。  </p>
+</blockquote>
+<p>是一个很绝对的判断：遵从两阶段锁定协议，则事务的任何并发调度都是可串行化调度——可以保持数据库一致性。【但反过来就未必了】</p>
+<p><strong>死锁</strong></p>
+<ol>
+<li>互斥条件</li>
+<li>请求和保持条件</li>
+<li>不剥夺条件</li>
+<li>环路等待条件</li>
+</ol>
+<h4 id="安全管理"><a href="#安全管理" class="headerlink" title="安全管理"></a>安全管理</h4><blockquote>
+<p>问题：</p>
+<p>黑客利用系统漏洞，攻击数据库系统运行，窃取与篡改系统数据。</p>
+<p>内部人员非法地泄露、篡改、删改系统的用户数据。</p>
+<p>系统运维人员 操作失误导致数据被删除或数据库服务器系统宕 机。 </p>
+<p>系统软硬件故障导致数据库的数据损坏、数据丢失、数据库实 例⽆法启动。 • 意外灾害事件（⽕灾、⽔灾、地震等⾃然灾害）导致系统被破 坏。 </p>
+</blockquote>
+<p>用户——用户身份鉴别（身份认证系统 数据库应用系统）——用户存取权限控制（DBMS）——操作系统安全保护（OS）——数据加密存储（数据库）</p>
+<p>最基本的：用户授权与访问权限控制</p>
+<p>用户和角色的多对多</p>
+<blockquote>
+<p> 在DBMS中，⾓⾊分为预定义的系统⾓⾊和⽤户定义⾓⾊两种。 系统⾓⾊是数据库系统内建的⾓⾊，它们在数据库系统中已经被定义好相应的操作权限。  ⽤户⾃定义⾓⾊ 则是 DBA 根据业务应⽤需求，设计了不同权限范围的⽤户类别。 </p>
+</blockquote>
+<h4 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h4><p><strong>备份内容</strong>：<strong>用户数据库</strong>、数据库结构、系统参数的<strong>系统数据库</strong></p>
+<p><strong>备份方式</strong>：</p>
+<ul>
+<li>完整数据库备份：花费更多时间和存储空间</li>
+<li>差异数据库备份：只备份自上次数据库备份以来发生变化的数据</li>
+<li>事务日志备份：只备份自上一次日志备份以来的事务日志数据——可以支持事务的回滚操作，可以将数据库恢复到故障点时刻的状态</li>
+<li>文件备份：数据库通常由存储在磁盘上的若干数据文件构成。——可以直接通过复制数据库文件方式实现数据库备份，<strong>文件备份方式与事务日志备份方式结合才有实际意义</strong></li>
+</ul>
+<p>——备份时刻是否需要停止实例运行？</p>
+<ol>
+<li>冷备份：停止。能够保证数据库完整性备份</li>
+<li>热备份：不停止。较好地实现实时数据备份</li>
+</ol>
+<h4 id="ODBC"><a href="#ODBC" class="headerlink" title="ODBC"></a>ODBC</h4><p><img src="https://s2.loli.net/2022/05/29/FJUKuL2HcZ8XDzy.png"></p>
+
                 
             </div>
             <hr/>
@@ -713,7 +869,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://ysh-lr.github.io/baidu_verify_xxxxxxx.html">https://ysh-lr.github.io/baidu_verify_xxxxxxx.html</a>
+                    <a href="https://ysh-lr.github.io/posts/8d2241fe.html">https://ysh-lr.github.io/posts/8d2241fe.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -750,7 +906,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1225,13 +1385,13 @@ new Valine({
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/baidu_verify_xxxxxxx.html">
+                <a href="/posts/8d2241fe.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/01.jpg" class="responsive-img" alt="">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/04.jpg" class="responsive-img" alt="数据库(X版)">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">数据库(X版)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1242,7 +1402,7 @@ new Valine({
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-27
                             </span>
                         <span class="publish-author">
                             
@@ -1254,22 +1414,30 @@ new Valine({
                 </div>
 
                 
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
+                
             </div>
         </div>
         
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/baidu_verify_xxxxxxx.html">
+                <a href="/posts/a772cedd.html">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E5%8A%A8%E6%BC%AB%E9%A3%8E%E6%99%AF/01.jpg" class="responsive-img" alt="">
+                        <img src="https://cdn.jsdelivr.net/gh/LuckyZmj/imgbed@master/galleries/%E4%BA%8C%E6%AC%A1%E5%85%83%E9%A3%8E/06.jpg" class="responsive-img" alt="数据库(B版)">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">数据库(B版)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1280,7 +1448,7 @@ new Valine({
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-27
                             </span>
                         <span class="publish-author">
                             
@@ -1290,7 +1458,14 @@ new Valine({
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
