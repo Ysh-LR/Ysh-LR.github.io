@@ -659,21 +659,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-29
+                    2022-05-31
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    5.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    24 分
                 </div>
                 
 
@@ -965,6 +965,405 @@ connection <span class="token keyword">limit</span> <span class="token operator"
 <h4 id="SQL语言数据类型注意事项"><a href="#SQL语言数据类型注意事项" class="headerlink" title="SQL语言数据类型注意事项"></a>SQL语言数据类型注意事项</h4><p><strong>单引号问题：</strong></p>
 <p>字符(char varchar text)、日期(date datetime)处理时需要加单引号，货币类型（money）不加单引号。</p>
 <h3 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h3><p>postgresql数据库软件本身提供：<strong>pg_dump</strong><code>备份单个数据库</code>,<strong>pg_dumpall</strong><code>备份整个数据库集群及系统全局数据库</code></p>
+<h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span>　<span class="token namespace">java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span></span><span class="token operator">*</span>
+    <span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"org.postgresql.Driver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token class-name">String</span> URL <span class="token operator">=</span> <span class="token string">"jdbc:postgresql://localhost:5432/testdb"</span><span class="token punctuation">;</span>
+	<span class="token class-name">String</span> userName <span class="token operator">=</span> <span class="token string">"myuser"</span><span class="token punctuation">;</span>
+	<span class="token class-name">String</span> password <span class="token operator">=</span> <span class="token string">"sa"</span><span class="token punctuation">;</span>
+	connection conn <span class="token operator">=</span> <span class="token class-name">DriverManager</span><span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>URL<span class="token punctuation">,</span>userName<span class="token punctuation">,</span>password<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Statement</span> statement <span class="token operator">=</span> conn<span class="token punctuation">.</span><span class="token function">createstatement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+string sql <span class="token operator">=</span> <span class="token string">"insert into public.student"</span> <span class="token operator">+</span> <span class="token string">"values ('202020','张三')"</span>；
+statement<span class="token punctuation">.</span><span class="token function">executeUpdate</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h4><blockquote>
+<p>经编译后，存储在数据库服务器端，当被再次调用时，不需要再次编译。</p>
+<p>客户端连接到数据库时，用户通过指定存储过程的名称并给出参数，数据库就可以找到相应的存储过程并予以调用。</p>
+</blockquote>
+<p><strong>创建存储过程</strong></p>
+<p><strong>create</strong> [or replace] <strong>function name</strong>([[argmode] [argname] argtype [{default |=} defsult_expr] [,…]])</p>
+<p> [ RETURNS retype | RETURNS TABLE ( column_name column_type [, …] ) ]  </p>
+<p><strong>as $$</strong></p>
+<p><strong>declare</strong></p>
+<p>…</p>
+<p><strong>begin</strong></p>
+<p>…</p>
+<p><strong>end;</strong></p>
+<p><strong>$$**language lang_name</strong>;**</p>
+<p><code>如果存储过程返回值由RETURNS TABLE指定，存储过程就不能有OUT和INOUT模式的参数。 </code></p>
+<p>  创建⼀个名为 countRecords() 的 存储过程统计Student表的记录数，存储过程的代码如下。 </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">function</span> countRecords<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">integer</span>
+<span class="token keyword">as</span> $count$
+<span class="token keyword">declare</span> 
+	count <span class="token keyword">integer</span><span class="token punctuation">;</span>
+<span class="token keyword">begin</span>
+	<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">into</span> count <span class="token keyword">from</span> student<span class="token punctuation">;</span>
+	<span class="token keyword">return</span> count<span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+$count$<span class="token keyword">language</span> plpgsql<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p> 记录型变量类似于数据库表的⾏，但没有预定义的结构，只能通 过 SELECT 或 FOR 命令来获取实际的⾏结构，因此记录变量在被初 始化之前⽆法访问，否则将引发运⾏时错误。  </p>
+<p> 需要注意的是，record 不是确定结构的数据类型，仅仅声明变量 可⽤来存储数据库表的记录 </p>
+</blockquote>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token operator">or</span> <span class="token keyword">replace</span> <span class="token keyword">function</span> displaystudents<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> void <span class="token keyword">as</span> $body$
+<span class="token keyword">declare</span>
+	sc record<span class="token punctuation">;</span>
+<span class="token keyword">begin</span>
+	<span class="token keyword">for</span> sc <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token keyword">distinct</span><span class="token punctuation">(</span>sid<span class="token punctuation">)</span><span class="token punctuation">,</span>sname <span class="token keyword">from</span> Student<span class="token punctuation">)</span> <span class="token keyword">loop</span> raise notice <span class="token string">'%-,%-'</span><span class="token punctuation">,</span>sc<span class="token punctuation">.</span>sid<span class="token punctuation">,</span>sc<span class="token punctuation">.</span>sname<span class="token punctuation">;</span>
+	<span class="token keyword">end</span> <span class="token keyword">loop</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+$body$<span class="token keyword">language</span> plpgsql<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 假设有两个数据库表table1和table2，以下程序显⽰它 们部分字段的值。 </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">function</span> displayFields<span class="token punctuation">(</span>t1_row table1<span class="token punctuation">)</span><span class="token keyword">returns</span> <span class="token keyword">text</span>
+<span class="token keyword">as</span> $$
+	<span class="token keyword">declare</span> t2_row table2<span class="token operator">%</span>ROWTYPE<span class="token punctuation">;</span>
+<span class="token keyword">begin</span>
+	<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">into</span> t2_row <span class="token keyword">from</span> table2 <span class="token keyword">where</span> id <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">limit</span> <span class="token number">1</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> t1_row<span class="token punctuation">.</span>field1 <span class="token operator">||</span>t2_row<span class="token punctuation">.</span>field3 <span class="token operator">||</span> t1_row<span class="token punctuation">.</span>field5<span class="token operator">||</span>t2_row<span class="token punctuation">.</span>filed7<span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+$$<span class="token keyword">language</span> plpgsql<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>赋值语句：saleprice**:=**20;</p>
+<p> 命令字符串可以在存储过程⾥ 动态地⽣成，以便于对各种不同的表和字段进⾏操作，从⽽提⾼函数 的灵活性，但是会降低执⾏效率。  </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token operator">or</span> <span class="token keyword">replace</span> <span class="token keyword">function</span> test<span class="token punctuation">(</span>tablename <span class="token keyword">text</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">integer</span> <span class="token keyword">as</span> $$
+<span class="token keyword">declare</span>
+	rec <span class="token keyword">integer</span>
+<span class="token keyword">begin</span>
+	<span class="token keyword">execute</span> <span class="token string">'select count(*)'</span> <span class="token operator">||</span> <span class="token string">'from'</span> <span class="token operator">||</span>tablename <span class="token keyword">into</span> rec<span class="token punctuation">;</span>
+	<span class="token keyword">return</span> rec<span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+$$<span class="token keyword">language</span> plpgsql<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> 1.创建触发器 </p>
+<p>使⽤PostgreSQL创建触发器的基本步骤如下。 </p>
+<p>（1）检查数据库中将要创建的触发器所依附的表或视图是否存 在，如果不存在，必须⾸先创建该表或视图。 </p>
+<p>（2）创建触发器被触发时所要执⾏的触发器函数，该函数的类型 必须是tringer型，是业务处理的逻辑实现。但要注意，有些关系数据 库不需要独⽴定义触发器函数，⽽是在创建触发器时，将业务处理⽤ 触发器的过程体来实现。 </p>
+<p>（3）创建触发器时，⼀般需要指明触发器依附的表、被触发的时 间、是⾏级还是语句级触发器，以及触发器执⾏需要满⾜的条件。  </p>
+<p> 在学⽣成绩数据库中，学⽣信息表（Student）存储 的每个学⽣的基本信息，学⽣成绩信息表（Stu_score）存储学⽣课程考试信息。为了跟踪学⽣成绩表的成绩改变情况，创建⼀个触发器， 当学⽣成绩发⽣改变时，系统⾃动记录学⽣变化前后的成绩数据到 Audit_score表中。  </p>
+<p> 第 ⼀ 步 ： 检 查 系 统 中 是 否 存 在 Student（sid,sname.sex.classid） 、 Stu_score(sid.cid.score) 和 Audit_score(username,sid.cid.updatetime oldscore,newscore)表，如果不存在，可以使⽤如下语句创建。 </p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> Student<span class="token punctuation">(</span>
+sid <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+sname <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+sex <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">check</span><span class="token punctuation">(</span>sex <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'男性'</span><span class="token punctuation">,</span><span class="token string">'女性'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+classid <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+<span class="token keyword">constraint</span> Student_PK <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>sid<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> Stu_score<span class="token punctuation">(</span>
+sid <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+cid <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+score <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">constraint</span> Stu_score <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>sid<span class="token punctuation">,</span>cid<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> Audit_score<span class="token punctuation">(</span>
+	username <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    sid <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    cid <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    updatetime <span class="token keyword">date</span><span class="token punctuation">,</span>
+    oldscore <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    newscore <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">#注意，这里TG_OP中操作必须是大写</span>
+<span class="token keyword">create</span> <span class="token operator">or</span> <span class="token keyword">replace</span> <span class="token keyword">function</span> score_audit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+	<span class="token keyword">returns</span> <span class="token keyword">trigger</span> <span class="token keyword">as</span> $score_audit$
+	<span class="token keyword">begin</span> 
+		<span class="token keyword">if</span><span class="token punctuation">(</span>TG_OP<span class="token operator">=</span><span class="token string">'DELETE'</span><span class="token punctuation">)</span><span class="token keyword">then</span>
+			<span class="token keyword">insert</span> <span class="token keyword">into</span> Audit_score <span class="token keyword">select</span> <span class="token keyword">user</span><span class="token punctuation">,</span>old<span class="token punctuation">.</span>sid<span class="token punctuation">,</span>old<span class="token punctuation">.</span>cid<span class="token punctuation">,</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>OLD<span class="token punctuation">.</span>score<span class="token punctuation">;</span>
+			<span class="token keyword">return</span> OLD<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>TG_OP<span class="token operator">=</span><span class="token string">'INSERT'</span><span class="token punctuation">)</span><span class="token keyword">then</span>
+			<span class="token keyword">insert</span> <span class="token keyword">into</span> Audit_score <span class="token keyword">select</span> <span class="token keyword">user</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>sid<span class="token punctuation">,</span>new<span class="token punctuation">.</span>cid<span class="token punctuation">,</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token boolean">null</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>score<span class="token punctuation">;</span>
+			<span class="token keyword">return</span> NEW<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>TG_oP<span class="token operator">=</span><span class="token string">'UPDATE'</span><span class="token punctuation">)</span><span class="token keyword">then</span>
+			<span class="token keyword">insert</span> <span class="token keyword">into</span> Audir_score <span class="token keyword">select</span> <span class="token keyword">user</span><span class="token punctuation">,</span>old<span class="token punctuation">.</span>sid<span class="token punctuation">,</span>old<span class="token punctuation">.</span>cid<span class="token punctuation">,</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>OLD<span class="token punctuation">.</span>score<span class="token punctuation">,</span>new<span class="token punctuation">.</span>score
+			<span class="token keyword">where</span> old<span class="token punctuation">.</span>sid <span class="token operator">=</span> new<span class="token punctuation">.</span>sid <span class="token operator">and</span> old<span class="token punctuation">.</span>cid<span class="token operator">=</span>new<span class="token punctuation">.</span>cid<span class="token punctuation">;</span>
+			<span class="token keyword">return</span> NEW<span class="token punctuation">;</span>
+			<span class="token keyword">END</span> <span class="token keyword">IF</span><span class="token punctuation">;</span>
+			<span class="token keyword">RETURN</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span>
+			<span class="token keyword">END</span><span class="token punctuation">;</span>
+$score_audit$<span class="token keyword">language</span> plpgsql<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>游标</strong></p>
+<p>1、声明游标变量</p>
+<p>name CURSOR [(arguments)] FOR query;</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">curStudent <span class="token keyword">CURSOR</span> <span class="token keyword">FOR</span> <span class="token keyword">select</span><span class="token operator">*</span> <span class="token keyword">FROM</span> Student<span class="token punctuation">;</span>
+curStudentOne <span class="token keyword">CURSOR</span> <span class="token punctuation">(</span><span class="token keyword">key</span> <span class="token keyword">integer</span><span class="token punctuation">)</span> <span class="token operator">IS</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> Student <span class="token keyword">WHERE</span> SID <span class="token operator">=</span> <span class="token keyword">key</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>2、打开游标</p>
+<p>①只能查询未绑定的</p>
+<p><code>open unbound_cursor FOR query; </code></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">open</span> curVars1 <span class="token keyword">for</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> Student <span class="token keyword">where</span> sid <span class="token operator">=</span> mykey<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><code>open unbound_cursor FOR EXECUTE query-string;</code></p>
+<pre class="line-numbers language-none"><code class="language-none">open curVars1 for execute 'select * from' || quote_ident($1);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>②只能查询已绑定的</p>
+<p><code>open bound_cursor [(argument_values)];</code></p>
+<pre class="line-numbers language-none"><code class="language-none">open curStudent;
+open curStudentOne('20202020202');<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>3、使用游标</p>
+<p>（1）FETCH</p>
+<p><code>fetch cursor into target;</code></p>
+<p>（2）CLOSE</p>
+<p><code>close sursorName;</code></p>
+<p> 以下程序使⽤不带参数的游标，查询Student表的学号、学⽣姓名和性别。 </p>
+<pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql"><span class="token keyword">create</span> <span class="token operator">or</span> <span class="token keyword">replace</span> <span class="token keyword">function</span> cursorDemo<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">boolean</span> <span class="token keyword">as</span> $<span class="token keyword">body</span>$
+<span class="token keyword">declare</span>
+	unbound_refcursor refcursor<span class="token punctuation">;</span>
+	vsid <span class="token keyword">varchar</span><span class="token punctuation">;</span>
+	vsname <span class="token keyword">varchar</span><span class="token punctuation">;</span>
+	vsgender <span class="token keyword">varchar</span><span class="token punctuation">;</span>
+<span class="token keyword">begin</span>
+	<span class="token keyword">open</span> unbound_refcursor <span class="token keyword">for</span>
+		<span class="token string">'select sid,sname,gender from Student'</span><span class="token punctuation">;</span>
+		<span class="token keyword">loop</span>
+			<span class="token keyword">fetch</span> unbound_refcursor <span class="token keyword">into</span> vsid<span class="token punctuation">,</span>vsname<span class="token punctuation">,</span>vsgender<span class="token punctuation">;</span>
+			<span class="token keyword">if</span> <span class="token keyword">found</span> <span class="token keyword">then</span>
+				<span class="token keyword">raise</span> notice <span class="token string">'%-,%-,%-'</span><span class="token punctuation">,</span>vsid<span class="token punctuation">,</span>vsname<span class="token punctuation">,</span>vsgender<span class="token punctuation">;</span>
+			<span class="token keyword">else</span>
+				<span class="token keyword">exit</span><span class="token punctuation">;</span>
+			<span class="token keyword">end</span> <span class="token keyword">if</span><span class="token punctuation">;</span>
+		<span class="token keyword">end</span> <span class="token keyword">loop</span><span class="token punctuation">;</span>
+		<span class="token keyword">close</span> unbound_refcursor<span class="token punctuation">;</span>
+		<span class="token keyword">raise</span> notice <span class="token string">'取数据循环结束...'</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+	<span class="token keyword">exception</span> <span class="token keyword">when</span> <span class="token keyword">others</span> <span class="token keyword">then</span>
+		<span class="token keyword">raise</span> <span class="token keyword">exception</span> <span class="token string">'error-----(%)'</span><span class="token punctuation">,</span>sqlerrm<span class="token punctuation">;</span>
+	<span class="token keyword">end</span><span class="token punctuation">;</span>
+	$<span class="token keyword">body</span>$<span class="token keyword">language</span> plpgsql<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> Java在执⾏SQL语句之前需要做如下⼏步处理。 </p>
+<p>① Class.forName(“org.postgresql.Driver”)加载PostgreSQL 驱动程序。</p>
+<p> ② 使 ⽤ DriverManager.getConnection(String url, String user, String pwd) 建 ⽴ 与 数 据 库 的 连 接 ， 返 回 表 ⽰ 连 接 的 Connection 对象。其中，url 指明数据库服务器名、端⼝号及数据库 名；user 指明具有连接权限的⽤户名；pwd指明⽤户user的⼝令。 需要注意的是，上述⽅法⼀般⽤于并发⽤户数较少的应⽤环境 中；但在互联⽹环境下，⼀般使⽤C3P0连接池建⽴与数据库的连接， 具体⽅法请读者查阅C3P0连接池⽂档。</p>
+<p> ③ 使⽤Connection对象的下列⽅法之⼀创建查询语句对象。</p>
+<p> • Connection.createStatement()创建⼀个Statement对象， 实现<strong>静态SQL语句</strong>查询； </p>
+<p>• Connection.prepareStatement(String sql) 创 建 ⼀ 个 PreparedStatement 对象，实现<strong>动态SQL语句</strong>查询； </p>
+<p>• Connection.prepareCall(String sql) 创 建 ⼀ 个 CallableStatement对象，调⽤<strong>数据库存储过程</strong>。 </p>
+<p>（2）执⾏查询返回查询结果，如果不需向 SQL 语句传递动态参 数，则使⽤静态查询Statement对象。<strong>Statement每次执⾏SQL语 句，相关数据库都要执⾏SQL语句的编译</strong>，执⾏查询有如下3种形式。</p>
+<p> ① Statement.execute(String sql) 执⾏各种SQL语句，返回⼀ 个boolean值，true表⽰执⾏的SQL语句具备查询结果，可通过 Statement.getResultSet()⽅法获取； </p>
+<p>② Statement.executeUpdate(String sql) 执 ⾏ SQL 中 的 INSERT、UPDATE、DELETE语句，返回⼀个int值，表⽰受影响的记录 数⽬；</p>
+<p> ③ Statement.executeQuery(String sql) 执 ⾏ SQL 中 的 SELECT语句，返回⼀个表⽰查询结果的ResultSet对象。 </p>
+<p>嵌入式SQL通信</p>
+<p> 1.向Java语⾔返回结果 </p>
+<p>数据库查询⼀般需要返回多条记录，则ResultSet接⼝对象⽤于返回查询结果集，该结果集本质上是内存中⽤于存储多条记录的游标， 主要有以下⼏种⽅法访问游标的记录信息。 </p>
+<p>① ResultSet.next()将游标由当前位置移动到下⼀⾏；</p>
+<p> ② ResultSet.getString(String columnName) 获取指定字段 的String类型值；</p>
+<p> ③ ResultSet.getString(int columnIndex) 获 取 指 定 索 引 的 String类型值；</p>
+<p> ④ ResuleSet.previous()将游标由当前位置移动到上⼀⾏。 </p>
+<p>2.向SQL语句传递参数 如果Java宿主语⾔需要向SQL语句传递参数，则使⽤动态查询 prepareStatement对象， preparedStatement预编译SQL语句， ⽀持批处理，执⾏查询有类似Statement对象的3种执⾏⽅式，且执 ⾏ ⽅ 法 中 没 有 参 数 ， 例 如：“prepareStatement.executeUpdate();”还可以批处理执⾏， prepareStatement对象使⽤addBatch()向批处理中加⼊⼀个更新语 句，使⽤executeBatch()⽅法成批地执⾏SQL语句，但不能执⾏返回 值是ResultSet结果集的SQL语句，⽽只是执⾏executeBatch()。 </p>
+<p> 以下程序是使⽤批处理⽅法向表Stu_score插⼊学⽣ 的课程成绩，并使⽤动态查询语句查询成绩⼤于等于80分的学⽣课程成绩。</p>
+<pre class="line-numbers language-none"><code class="language-none">package testConnDB;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class SQLinJava{
+	public static void main(String[] args){
+		Connection conn = null;
+		string URL = "jdbc:postgresql://localhost:5432/testDB";
+		String userName = "user";
+		String pwd = "sa";
+		String[] sid = {"0001","0002","0003","0004","0005"};
+		string[] cid = {"1000","2000","3000","1000","4000"};
+		int[] score = {90,80,98,100,62};
+		try{
+			Class.forName("org.postgresql.Driver");
+			conn = DriverManager.getConnection(URL,username.pwd);
+			System.out.println("连接成功！")；
+			String insertsql = "insert into Stu_score(sid,cid,score) values(?,?,?)";
+			String querySql="select sid,cid,score from Stu_score where score&gt;=?";
+			Preparedstatement psinsert = conn.prepareStatement(insertSql);
+			Preparedstatement psQuery = conn.prepareStatement(querySql);
+			for(int i = 0;i&lt;sid.length;i++){
+			psInsert.setString(1,sid[i]);
+			psInsert.setString(2,cid[1]);
+			psInsert.setInt(3,score[i]);
+			psInsert.addBatch();
+			}
+			psInsert.executeBatch();
+			psQuery.setInt(1.80);
+			ResultSet rs =
+			psQuery.executeQuery();
+			while (rs.next()) { // 判断是否
+				System.out.println(rs.getString("sid")+" "+rs.getString("cid")+ " " +rs.getInt("score"));
+			}
+			psQuery.close();
+			psInsert.close();
+			conn.close();
+		} catch ( Exception e ) {
+			System.err.println(
+			e.getClass().getName()+": "+e.getMessage() );
+			System.exit(0);
+		}
+	}
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql">
+<span class="token keyword">create</span> datebase Booksale<span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> boook_shop<span class="token punctuation">(</span>
+	shop_id <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    shop_name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    youbian <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    shop_address <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">80</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    <span class="token keyword">constraint</span> book_shop_PK <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>shop_id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">table</span> zhekou<span class="token punctuation">(</span>
+	zhekou_id int2 <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    shop_id <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    zhoukoulv <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    zhoukou_kind <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    <span class="token keyword">constraint</span> zhekou_PK <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>zhekou_id<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">constraint</span> shop_id_FK <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>shop_id<span class="token punctuation">)</span>
+    <span class="token keyword">references</span> book_shop<span class="token punctuation">(</span>shop_id<span class="token punctuation">)</span>
+    <span class="token keyword">on</span> <span class="token keyword">delete</span> <span class="token keyword">cascade</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> book_shop <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'123456789010'</span><span class="token punctuation">,</span><span class="token string">'穷哈哈'</span><span class="token punctuation">,</span><span class="token string">'123456'</span><span class="token punctuation">,</span><span class="token string">'你叉叉'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">create</span> <span class="token keyword">view</span> book_info <span class="token keyword">as</span> 
+<span class="token keyword">select</span> book<span class="token punctuation">.</span>isbn <span class="token keyword">as</span> <span class="token string">"ISBN"</span><span class="token punctuation">,</span>
+		book<span class="token punctuation">.</span><span class="token keyword">name</span> <span class="token keyword">as</span> <span class="token string">"书名"</span><span class="token punctuation">,</span>
+		publisher<span class="token punctuation">.</span>publisher_id <span class="token keyword">as</span> <span class="token string">"出版社"</span><span class="token punctuation">,</span>
+		author<span class="token punctuation">.</span>author_name <span class="token keyword">as</span> <span class="token string">"作者"</span><span class="token punctuation">,</span>
+<span class="token keyword">from</span> book<span class="token punctuation">,</span>publisher<span class="token punctuation">,</span>author 
+<span class="token keyword">where</span> book<span class="token punctuation">.</span>book_id <span class="token operator">=</span> publisher<span class="token punctuation">.</span>book_id <span class="token operator">and</span> author<span class="token punctuation">.</span>book_id <span class="token operator">=</span>book<span class="token punctuation">.</span>book_id<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">index</span> author_rank <span class="token keyword">on</span> author<span class="token punctuation">(</span>rank<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">delete</span> <span class="token keyword">from</span> book_shop
+<span class="token keyword">where</span> shop_id <span class="token operator">=</span> <span class="token string">'0000000000001'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">select</span> shop_id<span class="token punctuation">,</span>zhekou <span class="token keyword">from</span> book_shop<span class="token punctuation">;</span>
+
+<span class="token keyword">update</span> shop <span class="token keyword">set</span> shop_id<span class="token operator">=</span><span class="token string">'0001'</span>
+<span class="token keyword">where</span> shop_id <span class="token operator">=</span> <span class="token string">'0003'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token operator">or</span> <span class="token keyword">replace</span> <span class="token keyword">function</span> Pro_CurrentSale<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">table</span>
+	<span class="token punctuation">(</span>
+    	<span class="token string">"销售量"</span><span class="token punctuation">,</span><span class="token keyword">bigint</span><span class="token punctuation">,</span>
+        <span class="token string">"销售额"</span><span class="token punctuation">,</span>money
+    <span class="token punctuation">)</span>
+<span class="token keyword">as</span> $<span class="token keyword">body</span>$
+<span class="token keyword">begin</span>
+	<span class="token keyword">return</span> query
+	<span class="token keyword">select</span> <span class="token function">sum</span><span class="token punctuation">(</span>sale_number<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">sum</span><span class="token punctuation">(</span>sale_money<span class="token punctuation">)</span><span class="token keyword">from</span> sale 
+	<span class="token keyword">where</span> sale<span class="token punctuation">.</span>sale_date<span class="token operator">=</span><span class="token keyword">current_date</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+$<span class="token keyword">body</span>$<span class="token keyword">language</span> plpgsql<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token operator">or</span> <span class="token keyword">replace</span> <span class="token keyword">function</span> sale_insert<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">returns</span> <span class="token keyword">trigger</span>
+<span class="token keyword">as</span>$$
+<span class="token keyword">declare</span> 
+	book_remain int2<span class="token punctuation">;</span>	
+<span class="token keyword">begin</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span>TG_OP<span class="token operator">=</span><span class="token string">'insert'</span><span class="token punctuation">)</span><span class="token keyword">then</span>
+        <span class="token keyword">select</span> stock<span class="token punctuation">.</span>book_stock <span class="token keyword">into</span> book_remain <span class="token keyword">from</span> stock
+        <span class="token keyword">where</span> <span class="token keyword">new</span><span class="token punctuation">.</span>isbn <span class="token operator">=</span> stock<span class="token punctuation">.</span>isbn<span class="token punctuation">;</span>
+		<span class="token keyword">if</span><span class="token punctuation">(</span>book_remain <span class="token operator">&gt;</span> <span class="token keyword">new</span><span class="token punctuation">.</span>sale_number<span class="token punctuation">)</span><span class="token keyword">then</span>
+			<span class="token keyword">update</span> stock <span class="token keyword">set</span> book_remain <span class="token operator">=</span> book_remain<span class="token operator">-</span> <span class="token keyword">new</span><span class="token punctuation">.</span>sale_number
+			<span class="token keyword">where</span> <span class="token keyword">new</span><span class="token punctuation">.</span>isbn<span class="token operator">=</span>stock<span class="token punctuation">.</span>isbn<span class="token punctuation">;</span>
+		<span class="token keyword">else</span>
+			notify <span class="token string">"库存不足"</span><span class="token punctuation">;</span>
+			<span class="token keyword">exit</span><span class="token punctuation">;</span>
+		<span class="token keyword">end</span> <span class="token keyword">if</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token keyword">new</span><span class="token punctuation">;</span>
+	<span class="token keyword">end</span> <span class="token keyword">if</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span class="token punctuation">;</span>
+$$<span class="token keyword">language</span> plpgsql<span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> <span class="token keyword">trigger</span> Tri_lalala before <span class="token keyword">insert</span> <span class="token keyword">on</span> sale
+<span class="token keyword">for each row</span> <span class="token keyword">execute</span> <span class="token keyword">procedure</span> sale_insert<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">create</span> role <span class="token string">"baby"</span> <span class="token keyword">with</span>
+	login
+	nosuperuser
+	inherit
+	nocreatedb
+	nocreateuser
+	noreplication
+	connection <span class="token keyword">limit</span> <span class="token operator">-</span><span class="token number">1</span>
+	password <span class="token string">'123456'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">grant</span> <span class="token keyword">select</span> <span class="token keyword">on</span> publisher <span class="token keyword">to</span> <span class="token string">"baby"</span>
+
+<span class="token keyword">create</span> <span class="token keyword">user</span> <span class="token string">"zyh"</span> <span class="token keyword">with</span>
+	login
+	nosuperuser
+	nocreatedb
+	nocreateuser
+	inherit
+	noreplication
+	<span class="token keyword">connect</span> <span class="token keyword">limit</span> <span class="token operator">-</span><span class="token number">1</span>
+	password <span class="token string">'123456'</span>
+	<span class="token operator">in</span> role <span class="token string">"baby"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<pre class="line-numbers language-plsql" data-language="plsql"><code class="language-plsql">#创建数据库
+<span class="token keyword">create</span> <span class="token keyword">database</span> ProjectDB<span class="token punctuation">;</span>
+
+#创建表
+<span class="token keyword">create</span> <span class="token keyword">table</span> Employee<span class="token punctuation">(</span>
+	EmployeeID <span class="token keyword">serial</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    EmoloyeeName <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    Gender <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token string">'男'</span><span class="token punctuation">,</span>
+    Department <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+    Degree <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token keyword">check</span><span class="token punctuation">(</span>Degree <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'本科'</span><span class="token punctuation">,</span><span class="token string">'研究生'</span><span class="token punctuation">,</span><span class="token string">'其他'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Birthday <span class="token keyword">date</span><span class="token punctuation">,</span>
+    Phone <span class="token keyword">char</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Email <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">unique</span><span class="token punctuation">,</span>
+    <span class="token keyword">constraint</span> Employee_PK <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>EmployeeID<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token keyword">constraint</span> Department_FK <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>Department<span class="token punctuation">)</span>
+    <span class="token keyword">references</span><span class="token punctuation">(</span>Department<span class="token punctuation">.</span>DepartmentCode<span class="token punctuation">)</span>
+    <span class="token keyword">on</span> <span class="token keyword">delete</span> <span class="token keyword">cascade</span>
+    <span class="token keyword">on</span> <span class="token keyword">update</span> <span class="token keyword">cascade</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+#数据插入
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Employee<span class="token punctuation">(</span>EmployeeName<span class="token punctuation">,</span>Gender<span class="token punctuation">,</span>Department<span class="token punctuation">,</span>Degree<span class="token punctuation">,</span>Birthday<span class="token punctuation">,</span>Phone<span class="token punctuation">,</span>Email<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'张三'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'销售部'</span><span class="token punctuation">,</span><span class="token string">'实习生'</span><span class="token punctuation">,</span><span class="token string">'1993-1-3'</span><span class="token punctuation">,</span><span class="token string">'12345678910'</span><span class="token punctuation">,</span><span class="token string">'zs@hh.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Employee<span class="token punctuation">(</span>EmployeeName<span class="token punctuation">,</span>Gender<span class="token punctuation">,</span>Department<span class="token punctuation">,</span>Degree<span class="token punctuation">,</span>Birthday<span class="token punctuation">,</span>Phone<span class="token punctuation">,</span>Email<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'王五'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'销售部'</span><span class="token punctuation">,</span><span class="token string">'实习生'</span><span class="token punctuation">,</span><span class="token string">'1993-1-3'</span><span class="token punctuation">,</span><span class="token string">'12345678910'</span><span class="token punctuation">,</span><span class="token string">'zs@hh.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Employee<span class="token punctuation">(</span>EmployeeName<span class="token punctuation">,</span>Gender<span class="token punctuation">,</span>Department<span class="token punctuation">,</span>Degree<span class="token punctuation">,</span>Birthday<span class="token punctuation">,</span>Phone<span class="token punctuation">,</span>Email<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'李四'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'销售部'</span><span class="token punctuation">,</span><span class="token string">'经理'</span><span class="token punctuation">,</span><span class="token string">'1993-1-3'</span><span class="token punctuation">,</span><span class="token string">'12345678910'</span><span class="token punctuation">,</span><span class="token string">'zs@hh.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Employee<span class="token punctuation">(</span>EmployeeName<span class="token punctuation">,</span>Gender<span class="token punctuation">,</span>Department<span class="token punctuation">,</span>Degree<span class="token punctuation">,</span>Birthday<span class="token punctuation">,</span>Phone<span class="token punctuation">,</span>Email<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'杨七'</span><span class="token punctuation">,</span><span class="token string">'男'</span><span class="token punctuation">,</span><span class="token string">'销售部'</span><span class="token punctuation">,</span><span class="token string">'实习生'</span><span class="token punctuation">,</span><span class="token string">'1993-1-3'</span><span class="token punctuation">,</span><span class="token string">'12345678910'</span><span class="token punctuation">,</span><span class="token string">'zs@hh.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Employee<span class="token punctuation">(</span>EmployeeName<span class="token punctuation">,</span>Gender<span class="token punctuation">,</span>Department<span class="token punctuation">,</span>Degree<span class="token punctuation">,</span>Birthday<span class="token punctuation">,</span>Phone<span class="token punctuation">,</span>Email<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'朱六'</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">,</span><span class="token string">'产品部'</span><span class="token punctuation">,</span><span class="token string">'实习生'</span><span class="token punctuation">,</span><span class="token string">'1993-1-3'</span><span class="token punctuation">,</span><span class="token string">'12345678910'</span><span class="token punctuation">,</span><span class="token string">'zs@hh.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">insert</span> <span class="token keyword">into</span> Employee<span class="token punctuation">(</span>EmployeeName<span class="token punctuation">,</span>Gender<span class="token punctuation">,</span>Department<span class="token punctuation">,</span>Degree<span class="token punctuation">,</span>Birthday<span class="token punctuation">,</span>Phone<span class="token punctuation">,</span>Email<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'周八'</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">,</span><span class="token string">'产品部'</span><span class="token punctuation">,</span><span class="token string">'实习生'</span><span class="token punctuation">,</span><span class="token string">'1993-1-3'</span><span class="token punctuation">,</span><span class="token string">'12345678910'</span><span class="token punctuation">,</span><span class="token string">'zs@hh.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> <span class="token keyword">into</span> Employee<span class="token punctuation">(</span>EmployeeName<span class="token punctuation">,</span>Gender<span class="token punctuation">,</span>Department<span class="token punctuation">,</span>Degree<span class="token punctuation">,</span>Birthday<span class="token punctuation">,</span>Phone<span class="token punctuation">,</span>Email<span class="token punctuation">)</span>
+<span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">'武九'</span><span class="token punctuation">,</span><span class="token string">'女'</span><span class="token punctuation">,</span><span class="token string">'产品部'</span><span class="token punctuation">,</span><span class="token string">'实习生'</span><span class="token punctuation">,</span><span class="token string">'1993-1-3'</span><span class="token punctuation">,</span><span class="token string">'12345678910'</span><span class="token punctuation">,</span><span class="token string">'zs@hh.com'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+#数据更新
+<span class="token keyword">update</span> Employee <span class="token keyword">set</span> Email <span class="token operator">=</span> <span class="token string">'ww@hh.com'</span> <span class="token keyword">where</span> EmployeeName <span class="token operator">=</span> <span class="token string">'王五'</span><span class="token punctuation">;</span>
+
+#数据删除
+<span class="token keyword">delete</span> <span class="token keyword">from</span> Employee <span class="token keyword">where</span> EmployeeName <span class="token operator">=</span> <span class="token string">'杨七'</span><span class="token punctuation">;</span>
+
+#数据查询
+<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> Employee 
+<span class="token keyword">where</span> Degree <span class="token operator">=</span> <span class="token string">'实习生'</span> 
+<span class="token keyword">group</span> <span class="token keyword">by</span> Department <span class="token keyword">Having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token number">3</span><span class="token punctuation">;</span>
+
+<span class="token keyword">select</span> ProjectName <span class="token keyword">as</span> 项目名称，EmployeeName <span class="token keyword">as</span> 员工姓名，FinishedHours <span class="token keyword">as</span> 实际工时
+<span class="token keyword">from</span> project <span class="token keyword">as</span> P<span class="token punctuation">,</span>Employee <span class="token keyword">as</span> E<span class="token punctuation">,</span>Assignment <span class="token keyword">as</span> A
+<span class="token keyword">where</span> P<span class="token punctuation">.</span>ProjectID <span class="token operator">=</span> A<span class="token punctuation">.</span>projectID <span class="token operator">and</span> P<span class="token punctuation">.</span>projectID <span class="token operator">=</span> E<span class="token punctuation">.</span>ProjectID<span class="token punctuation">;</span>
+
+#角色管理
+<span class="token keyword">create</span> role student <span class="token keyword">with</span>
+login
+nosuperuser
+nocrestedb
+……
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1822,7 +2221,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">33.8k</span>&nbsp;字
+                class="white-color">37.9k</span>&nbsp;字
             
             
             

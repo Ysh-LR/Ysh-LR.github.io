@@ -666,14 +666,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    13 分
                 </div>
                 
 
@@ -843,6 +843,40 @@
 <li>热备份：不停止。较好地实现实时数据备份</li>
 </ol>
 <h4 id="ODBC"><a href="#ODBC" class="headerlink" title="ODBC"></a>ODBC</h4><p><img src="https://s2.loli.net/2022/05/29/FJUKuL2HcZ8XDzy.png"></p>
+<h4 id="javaweb"><a href="#javaweb" class="headerlink" title="javaweb"></a>javaweb</h4><p>客户端组件:客户端应用程序,Java Applet</p>
+<p>服务器端的web组件:Java Servlet 和 Java Server Pages(Jsp)</p>
+<p>服务端的业务组件:Enterprise Java Bean(EJB)</p>
+<p><strong>Servlet</strong>没有main方法</p>
+<blockquote>
+<p> Servlet的主要优点如下。 （1）Servlet是持久的。Servlet只需Web服务器加载⼀次，⽽ 且可以在不同请求之间保持服务（如数据库连接）。 （2）Servlet是与平台⽆关的。如前所述，Servlet是⽤Java编写 的，它⾃然也继承了Java的平台⽆关性。 （3）Servlet是可扩展的。由于Servlet是⽤Java编写的，它具备 Java所能带来的所有优点。Java是健壮的、⾯向对象的编程语⾔，它 很容易扩展以适应⽤户的需求。Servlet⾃然也具备了这些特征。 （4）Servlet是安全的。从外界调⽤⼀个Servlet的唯⼀⽅法就是 通过Web服务器。这提供了⾼⽔平的安全性保障，尤其是在Web服务 器有防⽕墙保护的时候。 （5）Servlet可以在多种多样的客户机上使⽤。由于Servlet是⽤ Java编写的，所以我们可以很⽅便地在HTML中使⽤它们。 </p>
+</blockquote>
+<p><strong>JSP</strong>将表示逻辑从Servlet中分离出来。——跨平台的</p>
+<p><strong>存储过程的缺点</strong></p>
+<p> （1）SQL本⾝是⼀种结构化查询语⾔，⽽存储过程本质上是过程 化的程序；⾯对复杂的业务逻辑，过程化处理逻辑相对⽐较复杂，⽽ SQL的优势是⾯向数据查询⽽⾮业务逻辑的处理，如果把复杂的业务 逻辑全放在存储过程中实现，就难于体现SQL的优势。 </p>
+<p>（2）如果存储过程的参数或返回数据发⽣变化，⼀般需要修改存 储过程的代码，同时还需要更新主程序调⽤存储过程的代码。 </p>
+<p>（3）开发调试复杂。由于缺乏⽀持存储过程的集成开发环境，存 储过程的开发调试⽐⼀般程序困难。 </p>
+<p>（4）可移植性差。由于存储过程将应⽤逻辑程序绑定到特定数据 库，每种数据库的存储过程可能存在不同程度的差异，因此使⽤存储 过程封装业务逻辑将限制应⽤程序的可移植性。在特定应⽤环境中， 如果应⽤程序的可移植性对应⽤⾮常重要，则应该选择将业务逻辑封 装在与特定 RDBMS ⽆关的中间层。 </p>
+<p><strong>触发器的分类</strong></p>
+<p> （1）触发器根据执⾏的次数分语句级触发器和⾏级触发器。</p>
+<p> ① 语句级触发器：由关键字FOR EACH STATEMENT声明，在触发器作⽤的表上<strong>执⾏⼀条 SQL 语句时</strong>，该触发器<strong>只执⾏⼀次</strong>，即使是修改了零⾏数据的 SQL，也会导致相应的触发器执⾏。如果都没有被 指定，FOR EACH STATEMENT会是默认值。</p>
+<p> ② ⾏级触发器：由关键字FOR EACH ROW标记的触发器，当特定事件导致<strong>触发器作⽤的表的数据发⽣变化时</strong>，<strong>每变化⼀⾏就会执⾏⼀次触发器</strong>。例如，假设学⽣成绩表建⽴了DELETE事件的触发器，当 ⽤户在学⽣成绩表执⾏DELETE语句删除指定学⽣的所有成绩（该学⽣ 有20条成绩记录）时，学⽣成绩表上的 DELETE触发器被独⽴执⾏20 次，即每删除⼀条记录调⽤⼀次触发器。 </p>
+<p>（2）触发器根据引发的时间分为BEFORE触发器、AFTER触发器 和INSTEAD OF触发器。</p>
+<p> ① BEFORE触发器：在触发事件<strong>之前</strong>执⾏触发器。 </p>
+<p>② AFTER触发器：在触发事件<strong>之后</strong>执⾏触发器。 </p>
+<p>③ INSTEAD OF 触发器：当触发事件发⽣后，数据库管理系统<strong>不执⾏引起事件触发的SQL语句，⽽执⾏相应触发器的函数</strong>，这类触发器通常定义在视图上。INSTEAD OF触发器有 INSERT、UPDATE 或 DELETE 3 种 事 件 ， <strong>在 每 个 视 图 上 ， 最 多 为 每 种 事 件 定 义 ⼀ 个 INSTEAD OF触发器。</strong> </p>
+<p><img src="https://s2.loli.net/2022/05/29/8lqZhkdLM3eCEc7.png"></p>
+<p><strong>触发器中可以直接使用的特殊变量</strong></p>
+<p> （1）NEW：数据类型是record；该变量为⾏级触发器中的 INSERT/UPDATE操作，保存新数据⾏。在语句级别的触发器及 DELETE操作中，这个变量未被赋值。 </p>
+<p>（2）OLD：数据类型是record；该变量为⾏级触发器中的 UPDATE/DELETE操作，保存旧数据⾏。在语句级别的触发器及 INSERT操作中，这个变量未被赋值。 </p>
+<p>（3）TG_NAME：数据类型是name；该变量包含实际触发的触发器名称。 </p>
+<p>（4）TG_WHEN：数据类型是text；是值为BEFORE、AFTER或 INSTEAD OF的⼀个字符串，取决于触发器的定义。 </p>
+<p>（ 5 ） TG_LEVEL ： 数据类型 是 text； 是 值 为 ROW 或 STATEMENT的⼀个字符串，取决于触发器的定义。 </p>
+<p>（6）TG_OP：数据类型是text；是值为INSERT 、 UPDATE、 DELETE或TRUNCATE的⼀个字符串，它说明触发器由哪个操作引 发。 </p>
+<p>（7）TG_RELID：数据类型是oid；是引发触发器调⽤的表的对 象ID。 </p>
+<p>（8）TG_RELNAME：数据类型是name；是导致触发器调⽤的 表的名称。现在已经被废弃，并且可能在未来的⼀个发⾏版本中消 失。可使⽤TG_TABLE_NAME替代。</p>
+<p>（9）TG_TABLE_NAME：数据类型是name；是导致触发器调⽤ 的表的名称。 </p>
+<p>（10）TG_TABLE_SCHEMA：数据类型是name；是导致触发器 调⽤的表所在的模式名称。 （ 11 ） TG_NARGS ： 数 据 类 型 是 integer； 在 CREATE TRIGGER语句中给触发器过程的参数数量。 </p>
+<p>（ 12 ） TG_ARGV[] ： 数 据 类 型 是 text 数 组 ； 来 ⾃ CREATE TRIGGER语句的参数。索引从0开始记数。⾮法索引（⼩于 0 或者⼤ 于等于TG_NARGS）会导致返回⼀个空值。 </p>
 
                 
             </div>
@@ -1702,7 +1736,7 @@ new Valine({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">33.8k</span>&nbsp;字
+                class="white-color">37.9k</span>&nbsp;字
             
             
             
